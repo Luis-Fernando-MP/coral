@@ -1,0 +1,55 @@
+/* stylelint-disable at-rule-empty-line-before */
+@use '@sass/config/vars' as v;
+
+@mixin glitch($animation: false) {
+  @if $animation != false {
+    animation:
+      glitch 0.5s infinite,
+      $animation;
+  } @else {
+    animation: glitch 0.5s infinite;
+  }
+
+  @keyframes glitch {
+    0%,
+    100% {
+      transform: translate(-2px, -2px);
+      text-shadow:
+        2px 2px 0 rgb(v.$tn1),
+        -2px -2px 0 rgb(v.$tn2);
+      box-shadow:
+        2px 2px 0 rgb(v.$tn1),
+        -2px -2px 0 rgb(v.$tn2);
+    }
+
+    25% {
+      transform: translate(2px, 2px);
+      text-shadow:
+        -2px -2px 0 rgb(v.$tn1),
+        2px 2px 0 rgb(v.$tn2);
+      box-shadow:
+        -2px -2px 0 rgb(v.$tn1),
+        2px 2px 0 rgb(v.$tn2);
+    }
+
+    50% {
+      transform: translate(-2px, 2px);
+      text-shadow:
+        2px -2px 0 rgb(v.$tn1),
+        -2px 2px 0 rgb(v.$tn2);
+      box-shadow:
+        2px -2px 0 rgb(v.$tn1),
+        -2px 2px 0 rgb(v.$tn2);
+    }
+
+    75% {
+      transform: translate(2px, -2px);
+      text-shadow:
+        -2px 2px 0 rgb(v.$tn1),
+        2px -2px 0 rgb(v.$tn2);
+      box-shadow:
+        -2px 2px 0 rgb(v.$tn1),
+        2px -2px 0 rgb(v.$tn2);
+    }
+  }
+}

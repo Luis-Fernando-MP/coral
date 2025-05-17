@@ -1,0 +1,32 @@
+---
+import '@fontsource/libre-baskerville/400.css'
+import '@fontsource/libre-baskerville/700.css'
+import '@fontsource-variable/work-sans'
+
+import BaseHead from '@/global/components/BaseHead.astro'
+import './style.scss'
+import Header from '@/components/Header/index.astro'
+import Authors from '@/components/Authors/index.astro'
+import Tools from '@/components/Tools/index.astro'
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title="Coral Page" description="Coral es un blog simple para leer artículos de css" />
+	</head>
+	<body class="blog">
+		<article class="blog-info">
+			<Header />
+			<div class="blog-section">
+				<Authors />
+			</div>
+			<h1 class="blog-title">Bitácora <br />De Código <br /><span>CSS</span></h1>
+			<div class="blog-section">
+				<Tools />
+			</div>
+		</article>
+		<article class="blog-content">
+			<slot />
+		</article>
+	</body>
+</html>

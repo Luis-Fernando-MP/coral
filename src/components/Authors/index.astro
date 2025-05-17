@@ -1,0 +1,42 @@
+---
+import { AUTHORS } from '@/consts'
+import './style.scss'
+import { blurhashToCssGradientString } from '@unpic/placeholder'
+
+import { Image } from '@unpic/astro'
+---
+
+<h2>Autores:</h2>
+<section class="authors" aria-labelledby="authors-heading">
+	{
+		AUTHORS.map((author) => {
+			const css = blurhashToCssGradientString(author.hash)
+
+			return (
+				<figure class="author border">
+					<div class="author-image" style={{ background: css }}>
+						<Image
+							src={author.image}
+							layout="constrained"
+							placeholder="blurhash"
+							objectFit="cover"
+							background={css}
+							width={35}
+							height={35}
+							alt={author.fullname}
+						/>
+					</div>
+					<figcaption class="author-bio">
+						<h4 class="author-fullname">{author.fullname}</h4>
+						<address class="author-detail">
+							<p>{author.userCode} - </p>
+							<a href={author.socialURL} target="_blank" rel="noopener noreferrer">
+								{author.nickname}
+							</a>
+						</address>
+					</figcaption>
+				</figure>
+			)
+		})
+	}
+</section>

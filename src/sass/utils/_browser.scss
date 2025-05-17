@@ -1,0 +1,20 @@
+@use 'sass:map';
+/* stylelint-disable at-rule-prelude-no-invalid */
+$browser-support-map: (
+  firefox: '(-moz-appearance: none)',
+  safari: '(-webkit-appearance: none) and (not all)',
+  edge: '(-ms-ime-align: auto)',
+  chrome: '(-webkit-appearance: none) and (all: initial)'
+);
+
+@mixin browsers($browsers) {
+  @each $browser in $browsers {
+    $support-rule: map.get($browser-support-map, $browser);
+
+    @if $support-rule {
+      @supports #{$support-rule} {
+        @content;
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+@mixin tooltip($to: v.$padding * -3, $from: v.$padding * -5) {
+  & {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tooltip {
+    pointer-events: visible;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: v.$padding * 0.5;
+    border-radius: v.$radius;
+
+    font-size: 0.8rem;
+    color: rgb(v.$fn3);
+    text-wrap: nowrap;
+
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgb(v.$tn1);
+
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+    &.top {
+      top: $to;
+    }
+
+    &.bottom {
+      bottom: $to;
+    }
+  }
+
+  &:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+
+    &.top {
+      top: $from;
+    }
+
+    &.bottom {
+      bottom: $from;
+    }
+  }
+}

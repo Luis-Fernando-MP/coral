@@ -1,0 +1,17 @@
+---
+import './style.scss'
+import Coral from '@/assets/Coral.astro'
+import { BugIcon } from '@lucide/astro'
+---
+
+<header class="header">
+	<div class="header-logo">
+		<Coral className="header-coral" />
+		<h2>Coral</h2>
+	</div>
+
+	<a class="header-feedback" href="/feedback">
+		<BugIcon />
+		<p>Feedback</p>
+	</a>
+</header>

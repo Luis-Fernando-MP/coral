@@ -1,0 +1,18 @@
+@use '@/sass/config/vars' as v;
+@use '@/sass/utils/scrollbar' as *;
+
+@mixin gradient($gr: v.$gr) {
+  background: $gr;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin etc() {
+  @extend %scroll-hidden;
+
+  overflow: auto;
+  width: 99%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

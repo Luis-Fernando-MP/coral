@@ -1,0 +1,75 @@
+:root {
+	--bg-primary: 250, 249, 245;
+	--bg-secondary: 244, 240, 223;
+	--bg-tertiary: 255, 255, 255;
+
+	// Fuentes
+	--fnt-primary: 61, 61, 58;
+	--fnt-secondary: 115, 114, 108;
+	--fnt-active: 255, 255, 255;
+
+	// Principales
+	--tn-primary: 219, 127, 96;
+	--tn-secondary: 228, 177, 160;
+
+	// Fuentes
+	--xl-font-size: 4rem;
+	--h1-font-size: 1.4rem;
+	--h2-font-size: 1.3rem;
+	--h3-font-size: 1.1rem;
+	--h4-font-size: 1rem;
+	--h5-font-size: 0.95rem;
+	--p-font-size: 0.9rem;
+	--s-grid: 15px;
+}
+
+$fXl: var(--xl-font-size);
+$fH1: var(--h1-font-size);
+$fH2: var(--h2-font-size);
+$fH3: var(--h3-font-size);
+$fH4: var(--h4-font-size);
+$fH5: var(--h5-font-size);
+$fP: var(--p-font-size);
+$bg1: var(--bg-primary);
+$bg2: var(--bg-secondary);
+$bg3: var(--bg-tertiary);
+$bgp: var(--bg-pure);
+$fn1: var(--fnt-primary);
+$fn2: var(--fnt-secondary);
+$fnA: var(--fnt-active);
+$tn1: var(--tn-primary);
+$tn2: var(--tn-secondary);
+
+// Window
+$min-small-screen: 450px;
+$small-screen: 610px;
+$medium-screen: 820px;
+$large-screen: 990px;
+$extra-large-screen: 1200px;
+$big-screen: 1350px;
+
+// Other
+$radius: 10px;
+$padding: 10px;
+$big-padding: 40px;
+$icon: 17px;
+$family-size: 16px;
+$fontBase: 'Segoe UI Mono', 'Roboto Mono';
+$font1: 'Libre Baskerville', serif;
+$font2: 'Work Sans Variable', sans-serif;
+$fontE1: 'Work Sans Variable', sans-serif;
+
+// Basic colors
+$error: rgb(228 30 56);
+$success: rgb(40 167 69);
+$warning: rgb(255 193 7);
+$info: rgb(42 42 42);
+$focus: rgb(66 133 244);
+$active: rgb(150 211 50);
+
+// bezier
+$bezier: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+// Gradients
+
+$txtGradient: linear-gradient(125deg, rgb($fn2) 14%, rgb($fn1), rgb($fn2) 100%);

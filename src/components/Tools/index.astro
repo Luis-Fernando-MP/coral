@@ -1,0 +1,74 @@
+---
+import { TOOLS } from '@/consts'
+import './style.scss'
+import { blurhashToCssGradientString } from '@unpic/placeholder'
+
+import { Image } from '@unpic/astro'
+---
+
+<h2>Herramientas:</h2>
+<section class="tools" aria-labelledby="tools-heading">
+	{
+		TOOLS.map(async (tool) => {
+			const previewHash = tool.previewHash && blurhashToCssGradientString(tool.previewHash)
+			const profileCss = blurhashToCssGradientString(tool.profileHash)
+
+			return (
+				<div class="tool border">
+					{tool.style === 'preview' && (
+						<div class="tool-preview" style={{ background: previewHash ?? '' }}>
+							<Image src={tool.projectPreview} alt={tool.projectName} layout="fullWidth" placeholder="dominantColor" />
+						</div>
+					)}
+					<figure class="tool-header">
+						<div class="tool-image" style={{ background: profileCss }}>
+							<Image
+								class="tool-image__icon"
+								src={tool.profileImage}
+								alt={tool.profileAuthor}
+								width={50}
+								height={50}
+								placeholder="dominantColor"
+								objectFit="cover"
+								priority={false}
+								loading="eager"
+							/>
+							<div class="tool-image__floatIcon">
+								<Image
+									class=""
+									src={tool.toolIcon}
+									alt={tool.toolName}
+									layout="fullWidth"
+									placeholder="dominantColor"
+									priority={false}
+									loading="eager"
+								/>
+							</div>
+						</div>
+
+						<figcaption class="tool-caption">
+							<div class="tool-title">
+								<h4>{tool.projectName}</h4>
+								<a class="tool-title__tag border" href={tool.toolLink} target="_blank" rel="noopener noreferrer">
+									{tool.toolName}
+								</a>
+							</div>
+							<a href={tool.profileLink} target="_blank" rel="noopener noreferrer">
+								{tool.profileNickname}
+							</a>
+						</figcaption>
+					</figure>
+
+					{tool.style === 'detail' && (
+						<div class="tool-description">
+							<p>{tool.details}</p>
+							<a href={tool.profileLink} class="tool-description__author">
+								{tool.profileAuthor}
+							</a>
+						</div>
+					)}
+				</div>
+			)
+		})
+	}
+</section>

@@ -1,17 +1,33 @@
 {
-  "name": "blog-css",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/mdx": "^4.2.6",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.4.0",
-    "astro": "^5.7.13"
-  }
+	"name": "blog-css",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"format": "pnpx stylelint '**/*.{css,scss}'"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "4.2.6",
+		"@astrojs/rss": "4.0.11",
+		"@astrojs/sitemap": "3.4.0",
+		"@fontsource-variable/work-sans": "^5.2.5",
+		"@fontsource/libre-baskerville": "^5.2.6",
+		"@lucide/astro": "^0.511.0",
+		"@unpic/astro": "^1.0.0",
+		"@unpic/pixels": "^1.3.0",
+		"@unpic/placeholder": "^0.1.2",
+		"astro": "5.7.13",
+		"blurhash": "^2.0.5",
+		"sass": "1.89.0"
+	},
+	"devDependencies": {
+		"stylelint": "16.19.1",
+		"stylelint-config-clean-order": "7.0.0",
+		"stylelint-config-standard": "38.0.0",
+		"stylelint-config-standard-scss": "15.0.0",
+		"stylelint-config-two-dash-bem": "1.0.0"
+	}
 }

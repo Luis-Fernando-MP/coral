@@ -1,0 +1,32 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.authors {
+	flex-wrap: wrap;
+	width: 100%;
+
+	@include d.flex($dir: row);
+}
+
+.author {
+	@include d.flex($dir: row, $ali: center);
+
+	padding: 15px;
+	border-radius: v.$radius;
+	background-color: rgb(v.$bg2);
+
+	&-bio {
+		@include d.flex($gap: 5px);
+	}
+
+	&-image {
+		overflow: hidden;
+		width: fit-content;
+		height: fit-content;
+		border-radius: 50%;
+	}
+
+	&-detail {
+		@include d.flex($dir: row, $ali: center);
+	}
+}

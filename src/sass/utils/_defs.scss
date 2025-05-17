@@ -1,0 +1,8 @@
+@use '@/sass/config/vars' as v;
+
+@mixin flex($gap: v.$padding, $ali: normal, $dir: column) {
+  display: flex;
+  flex-direction: $dir;
+  gap: $gap;
+  align-items: $ali;
+}

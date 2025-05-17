@@ -1,0 +1,68 @@
+/* stylelint-disable at-rule-empty-line-before */
+@use '../config/vars' as *;
+
+@mixin smallerScreen() {
+  @media screen and (max-width: $min-small-screen) {
+    @content;
+  }
+}
+
+@mixin smallScreen($mediaMin: false) {
+  @if $mediaMin {
+    @media screen and (min-width: $min-small-screen) and (max-width: $small-screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $small-screen) {
+      @content;
+    }
+  }
+}
+
+@mixin mediumScreen($mediaMin: false) {
+  @if $mediaMin {
+    @media screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $medium-screen) {
+      @content;
+    }
+  }
+}
+
+@mixin largeScreen($mediaMin: false) {
+  @if $mediaMin {
+    @media screen and (min-width: $medium-screen) and (max-width: $large-screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $large-screen) {
+      @content;
+    }
+  }
+}
+
+@mixin extraLargeScreen($mediaMin: false) {
+  @if $mediaMin {
+    @media screen and (min-width: $large-screen) and (max-width: $extra-large-screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $extra-large-screen) {
+      @content;
+    }
+  }
+}
+
+@mixin bigScreen($bigMin: false) {
+  @if $bigMin {
+    @media screen and (min-width: $extra-large-screen) and (max-width: $big-screen) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $big-screen) {
+      @content;
+    }
+  }
+}

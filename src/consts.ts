@@ -1,7 +1,7 @@
 export const SITE_TITLE = 'Coral Blog'
 export const SITE_DESCRIPTION = 'Bienvenido a Coral Blog'
 
-export const FILTERS = ['media queries', 'grid', 'flex', 'layout', 'responsive']
+export const FILTERS = ['media queries', 'grid', 'flex', 'layout', 'less', 'responsive', 'preprocesador']
 
 export const AUTHORS = [
 	{

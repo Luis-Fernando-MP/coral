@@ -1,6 +1,8 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
 
+@use 'content' as *;
+
 .post {
 	width: 100%;
 	max-width: 800px;

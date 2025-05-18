@@ -1,0 +1,446 @@
+---
+title: 'Sise Responsivo con CSS'
+description: 'Aprende cómo crear sitios web que se adapten a cualquier dispositivo usando CSS responsivo, ejemplos de código y gráficas explicativas.'
+pubDate: 'Jul 08 2022'
+hash: 'L8D75^A#1pWQ1C,R=Nss]XW@WoWT'
+heroImage: '/blog-placeholder-3.jpg'
+tags:
+  - media queries
+  - responsive
+---
+
+import Mermaid from '@/components/Mermaid/index.astro'
+
+# Media Queries
+
+Las Media Queries son una poderosa característica de **CSS3** que nos permite adaptar dinámicamente nuestros sitios web según las características del dispositivo que los visualiza. Como estudiantes y profesionales de Ingeniería de Sistemas, entenderlas es fundamental ya que constituyen la columna vertebral del diseño web responsivo.
+
+## ¿Qué resuelven?
+
+Con las Media Queries podemos modificar la presentación de nuestro contenido basándonos en:
+
+- Dimensiones de pantalla (ancho/alto)
+- Orientación del dispositivo (horizontal/vertical)
+- Densidad de píxeles (pantallas estándar vs retina)
+- Preferencias del usuario (modo oscuro/claro)
+
+Todo esto sin necesidad de crear versiones separadas para cada tipo de dispositivo.
+
+## La estructura básica
+
+```css
+@media (condición) {
+	/* Código CSS que se aplica cuando la condición es verdadera */
+}
+```
+
+Por ejemplo:
+
+```css
+@media (max-width: 768px) {
+	.contenedor {
+		flex-direction: column;
+	}
+}
+```
+
+Este código reorganiza nuestros elementos en columna cuando el viewport es de 768px o menos.
+
+## Combinando condiciones
+
+Podemos crear reglas más específicas usando operadores lógicos:
+
+- `and` - Todas las condiciones deben cumplirse
+- `,` (coma, equivale a "or") - Al menos una condición debe cumplirse
+- `not` - Niega una condición
+
+```css
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+	/* Estilos específicos para tablets en modo horizontal */
+}
+```
+
+## Enfoque Mobile-First
+
+En nuestra práctica profesional, el enfoque "mobile-first" ha demostrado ser el más eficiente:
+
+1. Comenzamos definiendo los estilos base para dispositivos móviles
+2. Usamos `min-width` para ir "creciendo" el diseño hacia pantallas más grandes
+3. Añadimos complejidad progresivamente según aumenta el espacio disponible
+
+Este enfoque nos ayuda a:
+
+- Priorizar el contenido esencial
+- Reducir la sobrescritura de estilos
+- Mejorar el rendimiento en dispositivos con recursos limitados
+
+<Mermaid
+	code={`
+flowchart LR
+    A[Estilos Base\nMóvil] --> B[min-width: 600px\nTablet]
+    B --> C[min-width: 960px\nEscritorio]
+    style A fill:
+    style B fill:
+    style C fill:
+`}
+/>
+
+## Puntos de quiebre (breakpoints) estratégicos
+
+Los breakpoints no deben elegirse según dispositivos específicos, sino basándose en dónde nuestro diseño necesita adaptarse:
+
+| Rango común   | Contexto típico |
+| ------------- | --------------- |
+| < 600px       | Smartphones     |
+| 600px - 959px | Tablets         |
+| ≥ 960px       | Escritorio      |
+
+## Ejemplo práctico completo
+
+Veamos cómo crear un menú de navegación responsivo que se adapta a diferentes dispositivos:
+
+### HTML
+
+```html
+<nav class="menu-principal">
+	<div class="logo">Coral</div>
+	<button class="menu-toggle">☰</button>
+	<ul class="menu-items">
+		<li><a href="#">Inicio</a></li>
+		<li><a href="#">Servicios</a></li>
+		<li><a href="#">Nosotros</a></li>
+		<li><a href="#">Contacto</a></li>
+	</ul>
+</nav>
+```
+
+### CSS
+
+```css
+.menu-principal {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu-items {
+	display: none; /* Oculto por defecto en móvil */
+	width: 100%;
+}
+
+.menu-items.active {
+	display: block;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+	.menu-items {
+		display: flex;
+		width: auto;
+		flex-wrap: wrap;
+	}
+
+	.menu-items li {
+		padding: 0 10px;
+		border-top: none;
+	}
+
+	.menu-toggle {
+		display: none; /* Ocultamos el botón hamburguesa */
+	}
+}
+
+/* Escritorio */
+@media (min-width: 960px) {
+	.menu-principal {
+		padding: var(--padding-base) 10%;
+	}
+
+	.menu-items li {
+		padding: 0 20px;
+	}
+
+	.menu-items a {
+		position: relative;
+		transition: color 0.3s;
+	}
+
+	.menu-items a::after {
+		content: '';
+		position: absolute;
+		bottom: -5px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: var(--color-primario);
+		transition: width 0.3s;
+	}
+
+	.menu-items a:hover {
+		color: var(--color-primario);
+	}
+
+	.menu-items a:hover::after {
+		width: 100%;
+	}
+}
+
+/* Media query para preferencias de usuario */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-texto: #f1f1f1;
+	}
+
+	.menu-principal {
+		background-color: #222;
+	}
+
+	.menu-items li {
+		border-color: #444;
+	}
+}
+```
+
+<iframe
+	style="width:100%;height:fit-content;border:none"
+	srcdoc='
+  <html>
+  <head>
+    <style>
+      :root {
+        --color-primario: rgb(219, 127, 96);
+        --color-texto: #333;
+        --padding-base: 15px;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      /* Estilos base (móvil primero) */
+      .menu-principal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--padding-base);
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: var(--color-primario);
+      }
+
+      .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
+
+      .menu-items {
+        display: none; /* Oculto por defecto en móvil */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .menu-items.active {
+        display: block;
+      }
+
+      .menu-items li {
+        padding: var(--padding-base) 0;
+        border-top: 1px solid #eee;
+      }
+
+      .menu-items a {
+        pointer-events: none;
+        color: var(--color-texto);
+        text-decoration: none;
+        display: block;
+      }
+
+      /* Tablet */
+      @media (min-width: 600px) {
+        .menu-items {
+          display: flex;
+          width: auto;
+          flex-wrap: wrap;
+        }
+
+        .menu-items li {
+          padding: 0 10px;
+          border-top: none;
+        }
+
+        .menu-toggle {
+          display: none; /* Ocultamos el botón hamburguesa */
+        }
+      }
+
+      /* Escritorio */
+      @media (min-width: 960px) {
+        .menu-principal {
+          padding: var(--padding-base) 10%;
+        }
+
+        .menu-items li {
+          padding: 0 20px;
+        }
+
+        .menu-items a {
+          position: relative;
+          transition: color 0.3s;
+        }
+
+        .menu-items a::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: var(--color-primario);
+          transition: width 0.3s;
+        }
+
+        .menu-items a:hover {
+          color: var(--color-primario);
+        }
+
+        .menu-items a:hover::after {
+          width: 100%;
+        }
+      }
+
+      /* Media query para preferencias de usuario */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-texto: #f1f1f1;
+        }
+
+        .menu-principal {
+          background-color: #222;
+        }
+
+        .menu-items li {
+          border-color: #444;
+        }
+      }
+    </style>
+
+  </head>
+  <body>
+    <nav class="menu-principal">
+      <div class="logo">MiSitio</div>
+      <button class="menu-toggle">☰</button>
+      <ul class="menu-items">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </body>
+  </html>
+'
+></iframe>
+
+<Mermaid
+	code={`
+graph TD
+    A[Diseño Móvil<br><600px] -->|min-width: 600px| B[Diseño Tablet<br>600-959px]
+    B -->|min-width: 960px| C[Diseño Escritorio<br>>=960px]
+
+    M[Diseño Base]
+
+    M -->|Móvil| A1[Menú oculto<br>Botón hamburguesa visible]
+    M -->|Tablet| B1[Menú horizontal<br>Botón hamburguesa oculto]
+    M -->|Escritorio| C1[Menú horizontal con animaciones<br>Márgenes más amplios]
+
+    D[Preferencias Usuario] -->|prefers-color-scheme: dark| E[Modo Oscuro]
+
+    style A fill:
+    style B fill:
+    style C fill:
+    style E fill:,color:
+
+`}
+/>
+
+## Consideraciones de rendimiento
+
+- Las Media Queries se evalúan en tiempo real, por lo que conviene limitar su cantidad y complejidad
+- Podemos usar variables CSS para reducir la duplicación de valores entre breakpoints
+- La especificidad de los selectores dentro de las Media Queries sigue las reglas normales de CSS
+
+## Media Queries modernas
+
+- `prefers-reduced-motion`: Nos permite respetar las configuraciones de accesibilidad del usuario
+- `prefers-color-scheme`: Detecta si el usuario prefiere modo oscuro o claro
+- `aspect-ratio`: Permite estilos específicos según la proporción de la pantalla
+
+```css
+/* Usuarios que prefieren reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+/* Adaptación a modo oscuro */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-fondo: #121212;
+		--color-texto: #f1f1f1;
+	}
+}
+
+/* Dispositivos con relación de aspecto específica */
+@media (aspect-ratio: 1/1) {
+	/* Estilos para pantallas cuadradas */
+}
+```
+
+## Debugging
+
+- Los navegadores modernos incluyen herramientas para simular diferentes dispositivos y probar nuestras Media Queries
+- Podemos usar `console.log()` junto con JavaScript para verificar qué Media Queries se están aplicando en cada momento
+
+```js
+// Verificar si una media query está activa
+const isMobile = window.matchMedia('(max-width: 599px)').matches
+console.log('¿Es dispositivo móvil?', isMobile)
+
+// Escuchar cambios en tiempo real
+const tabletMediaQuery = window.matchMedia('(min-width: 600px) and (max-width: 959px)')
+
+tabletMediaQuery.addEventListener('change', (event) => {
+	if (event.matches) {
+		console.log('Ahora estamos en vista tablet')
+	} else {
+		console.log('Ya no estamos en vista tablet')
+	}
+})
+```
+
+## Conclusiones
+
+Las Media Queries nos permiten:
+
+- **Crear una sola base de código** que funciona en múltiples dispositivos, ahorrando tiempo de desarrollo y mantenimiento
+- **Mejorar la experiencia de usuario** adaptando la interfaz a las capacidades del dispositivo
+- **Optimizar el rendimiento** al cargar solo los estilos necesarios para cada contexto
+- **Respetar las preferencias del usuario** implementando modificaciones según sus configuraciones
+- **Evolucionar con el tiempo**, ya que podemos actualizar breakpoints sin cambiar la estructura HTML
+
+Dominar las Media Queries ya no es opcional en el desarrollo web moderno. Son la herramienta que nos permite construir experiencias digitales verdaderamente universales, accesibles desde cualquier dispositivo y contexto de uso.

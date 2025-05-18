@@ -1,0 +1,517 @@
+---
+title: 'preprocesador-less'
+description: 'Aprende a dominar LESS, el preprocesador CSS, con ejemplos, tablas y diagramas'
+pubDate: 'May 18 2023'
+heroImage: '/blog-placeholder-2.jpg'
+hash: 'L54:=kp}Q8ZSHXZHpwk:pekke.aK'
+tags:
+  - less
+  - preprocesador
+  - css
+---
+
+import Mermaid from '@/components/Mermaid/index.astro'
+
+# Los preprocesadores
+
+Son herramientas que facilitan enormemente la vida cuando trabajamos con CSS. Básicamente, nos permiten escribir un código más limpio, organizado y con funcionalidades extra que el CSS estándar no tiene.
+
+<div class="featured">
+	<p>
+		Pesemos en el poder de usar variables, funciones, bucles, estructuras condicionales… Ese es el punto fuerte de los
+		preprocesadores.
+	</p>
+</div>
+
+## ¿Por qué usarlos?
+
+El CSS tradicional, aunque poderoso, puede volverse repetitivo y difícil de mantener cuando trabajamos en proyectos grandes:
+
+- Repetimos constantemente colores y valores
+- No podemos crear funciones para operaciones comunes
+- La estructura plana hace difícil visualizar la jerarquía
+
+Los preprocesadores resuelven estos problemas dándole “superpoderes” a CSS.
+
+## Habrá alguna desventaja
+
+Sí, aunque suene soñador y mágico, los preprocesadores deben de ser compilados a CSS nativo, por lo que, el tema de funciones, bucles, estructuras condicionales, etc. Solo queda en el modo desarrollo.
+
+# LESS
+
+significa “Leaner Style Sheets”, este es uno de los preprocesadores más populares y fáciles de aprender. Su filosofía es simple: extender CSS con características dinámicas manteniendo una sintaxis familiar.
+
+# ¿Por qué usar LESS?
+
+1. **Código más limpio y mantenible** - Variables y estructura anidada que facilitan entender el código
+2. **DRY (Don't Repeat Yourself)** - Mixins y variables evitan repetición
+3. **Funciones matemáticas** - Cálculos automáticos para layouts precisos
+4. **Curva de aprendizaje baja** - Si conoces CSS, aprender Less rápido
+
+<div class="featured">
+	<p>
+		LESS es solo una de las herramientas que hacen nuestro CSS más potente y agradable de escribir. Alternativas como Sass/SCSS
+		son igual de populares, aunque con características un poco diferentes. La elección entre ellas suele depender del equipo y
+		proyecto específico.
+	</p>
+</div>
+
+## Elementos principales
+
+- **Variables**: Almacenan valores para reutilizarlos
+- **Mixins**: Como “funciones” que incluyen código reutilizable
+- **Anidamiento**: Estructura jerárquica de selectores
+- **Operaciones**: Cálculos matemáticos directamente en el código
+- **Funciones**: Manipulan valores para crear efectos dinámicos
+
+## 1. Variables
+
+Las variables en Less usan el símbolo `@` y son una forma genial de almacenar información que queremos reutilizar:
+
+```less
+@color-primario: red;
+@color-secundario: blue;
+@margen-base: 15px;
+@fuente-principal: 'Roboto', sans-serif;
+
+.boton {
+	background-color: @color-primario;
+	padding: @margen-base;
+	font-family: @fuente-principal;
+	// Función que oscurece 10%
+	border: 1px solid darken(@color-primario, 10%);
+}
+
+.alerta {
+	color: @color-secundario;
+	// Podemos hacer operaciones, esto compilaria sin problemas a 30px
+	margin-bottom: @margen-base * 2;
+	font-family: @fuente-principal;
+}
+```
+
+<div class="featured">
+	<p>
+		La superventaja de esto, es que ahora podríamos cambiar los valores de las variables y automáticamente el código CSS
+		reaccionaria a este
+	</p>
+</div>
+
+## 2. Anidamiento
+
+Una de las mejores características de Less es poder anidar selectores, similar a como se estructura HTML (Cuestión que fuertemente aplaudida y aplica en las últimas versiones de CSS):
+
+```less
+// Antiguas verciones de CSS tradicional
+.navegacion {
+	background-color: #333;
+}
+.navegacion ul {
+	list-style: none;
+}
+.navegacion ul li {
+	display: inline-block;
+}
+.navegacion ul li a {
+	color: white;
+}
+.navegacion ul li a:hover {
+	color: #3498db;
+}
+
+// Con LESS
+.navegacion {
+	background-color: #333;
+
+	ul {
+		list-style: none;
+
+		li {
+			display: inline-block;
+
+			a.link {
+				color: white;
+
+				&:hover {
+					color: #3498db;
+				}
+			}
+		}
+	}
+}
+```
+
+El símbolo `&` es especial aquí en esta forma de escribir, pues representa al selector padre, por ejemplo al anchor:
+
+- `a.link` es el padre, por lo que `&:hover` genera `a.link:hover` en el CSS final.3.
+
+## 3. Mixins
+
+Los mixins son como funciones o “bloques de código reutilizables” que podemos insertar donde queramos:
+
+```less
+// Definimos un mixin para flexbox
+.flex-center() {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// Definimos un mixin con parámetros
+.border-radius(@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+// Usamos los mixins
+.card {
+	.flex-center(); // Aplicamos el mixin
+	.border-radius(10px); // Con parámetro específico
+	background-color: white;
+	padding: 20px;
+}
+
+.avatar {
+	.border-radius(50%); // Círculo perfecto
+	width: 60px;
+	height: 60px;
+}
+```
+
+## 4. Operaciones
+
+Less nos permite hacer matemáticas directamente en el código CSS:
+
+```less
+@ancho-base: 960px;
+@columnas: 12;
+@margen: 20px;
+
+// Calculamos automáticamente el ancho de cada columna
+.columna {
+	float: left;
+	margin-left: @margen / 2;
+	margin-right: @margen / 2;
+
+	// Calculamos diferentes anchos de columna
+	&.col-6 {
+		width: (@ancho-base / @columnas) * 6 - @margen;
+	}
+
+	&.col-4 {
+		width: (@ancho-base / @columnas) * 4 - @margen;
+	}
+
+	&.col-3 {
+		width: (@ancho-base / @columnas) * 3 - @margen;
+	}
+}
+```
+
+## 5. Importaciones
+
+Con Less, podemos dividir nuestro código en múltiples archivos y luego importarlos, esto es esencialmente increíble, puesto que podríamos reutilizar y ordenar nuestros estilos entre carpetas y componentes:
+
+<div>
+<Mermaid
+	code={`
+flowchart TD
+  src["📁 src"]
+  less["📁 less"]
+  global["📁 global"]
+
+variables["📄 variables.less"]
+mixings["📄 mixings.less"]
+main["📄 main.less"]
+
+src --> less
+src --> global
+less --> variables
+less --> mixings
+global --> main
+`}
+/>
+
+```less
+// variables.less
+@color-principal: #3498db;
+@color-secundario: #2ecc71;
+@fuente-principal: 'Roboto', sans-serif;
+```
+
+```less
+// mixins.less
+.sombra-suave() {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+```
+
+```less
+// main.less
+@import '../less/variables.less';
+@import '../less/mixings.less';
+
+body {
+	font-family: @fuente-principal;
+	color: #333;
+}
+
+.card {
+	background: white;
+	.sombra-suave();
+	color: @color-principal;
+}
+```
+
+</div>
+<div class="featured">
+<p>
+
+Las importaciones en Less son procesadas durante la compilación, no como las de CSS que son peticiones HTTP adicionales.
+
+</p></div>
+
+## 6. Funciones integradas de Less
+
+### Manipulación de color
+
+Funciones que nos ayudan a modificar características de colores existentes.
+
+- **lighten(color, amount)**
+  - `color`: Color base
+  - `amount`: Porcentaje de aclarado (0-100%)
+- **darken(color, amount)**
+  - `color`: Color base
+  - `amount`: Porcentaje de oscurecimiento (0-100%)
+- **saturate(color, amount) / desaturate(color, amount)**
+  - `color`: Color base
+  - `amount`: Porcentaje de aumento de saturación (0-100%)
+- **fade(color, amount)** / **fadeout(color, amount)**
+  - `color`: Color base
+  - `amount`: Porcentaje de transparencia a aplicar (0-100%)
+- **fadein(color, amount)**
+  - `color`: Color base
+  - `amount`: Porcentaje de opacidad a aumentar (0-100%)
+- **spin(color, angle)**
+  - `color`: Color base
+  - `angle`: Grados de rotación en el círculo cromático
+
+```less
+@color-base: #ff0000; // rojo
+
+.elemento {
+	color: @color-base;
+	background-color: lighten(@color-base, 20%); // más claro
+	border-color: darken(@color-base, 20%); // más oscuro
+	box-shadow: fade(@color-base, 50%); // semi-transparente
+
+	&:hover {
+		color: saturate(@color-base, 20%); // más saturado
+		background-color: desaturate(@color-base, 20%); // menos saturado
+		border-color: spin(@color-base, 180); // rota matiz 180 grados
+	}
+}
+```
+
+### MIX: Mezcla de colores
+
+Función que nos ayudan a combinar colores.
+
+**mix(color1, color2, weight)**
+
+- `color1`: Primer color a mezclar
+- `color2`: Segundo color a mezclar
+- `weight`: Porcentaje de peso del primer color (opcional, default 50%)
+
+```less
+@rojo: #ff0000;
+@azul: #0000ff;
+
+.elemento {
+	background-color: mix(@rojo, @azul); // Mezcla 50% rojo con 50% azul
+	border-color: mix(@rojo, @azul, 25%); // 25% rojo, 75% azul
+}
+```
+
+## Funciones matemáticas
+
+Funciones para operaciones matemáticas y conversiones.
+
+- **percentage(number):** Número decimal a convertir en porcentaje
+- **round(number):** Número a redondear al entero más cercano
+- **ceil(number):** Número a redondear hacia arriba
+- **floor(number):** Número a redondear hacia abajo
+- **min(value1, value2, ...):** Valores entre los que se seleccionará el mínimo
+- **max(value1, value2, ...):** Valores entre los que se seleccionará el máximo
+- **abs(number):** Número del que se obtendrá su valor absoluto
+
+```less
+@base: 5;
+
+.elemento {
+	width: percentage(0.5); // convierte a porcentaje: 50%
+	height: round(3.7px); // redondea: 4px
+	margin: ceil(3.1px); // redondea hacia arriba: 4px
+	padding: floor(3.9px); // redondea hacia abajo: 3px
+
+	top: (@base * 2) + 10px; // 20px
+	left: min(10px, 5px, 15px); // valor mínimo: 5px
+	right: max(10px, 5px, 15px); // valor máximo: 15px
+	bottom: abs(-5px); // valor absoluto: 5px
+}
+```
+
+## Funciones de cadenas
+
+Funciones para manipular y transformar cadenas de texto.
+
+- **escape(string):** Cadena de texto a escapar (para URLs)
+- **e(string):** Cadena de texto donde se interpretarán secuencias de escape
+- **%(format, arguments...)**
+  - `format`: Cadena de formato (estilo printf)
+  - `arguments...`: Valores a insertar en la cadena de formato
+- **lowercase(string):** Cadena de texto a convertir a minúsculas
+- **uppercase(string):** Cadena de texto a convertir a mayúsculas
+
+```less
+@base: 'texto';
+@ruta: 'imagenes/logo';
+
+.elemento {
+	content: escape(@base); // escapa caracteres especiales
+
+	background-image: url('@{ruta}.png'); // interpolación de variables
+
+	content: e('Este texto es \A importante'); // \A = salto de línea
+	font-family: %('Familia-%d', 5); // formato: "Familia-5"
+
+	text-transform: lowercase('TEXT'); // "text"
+	font-variant: uppercase('text'); // "TEXT"
+}
+```
+
+## Funciones tipo (type)
+
+Funciones para comprobar tipos de datos.
+
+- **isNumber(value)**
+- **isString(value)**
+- **isColor(value)**
+- **isPercentage(value)**
+- **isPixel(value)**
+- **isEm(value)**
+
+```less
+@valor1: 16px;
+@valor2: 'texto';
+@valor3: rgb(255, 0, 0);
+@valor4: rgba(255, 0, 0, 0.5);
+
+.comprobaciones {
+	es-numero: isNumber(@valor1); // true
+	es-string: isString(@valor2); // true
+	es-color: isColor(@valor3); // true
+	es-porcentaje: isPercentage(50%); // true
+	es-pixel: isPixel(@valor1); // true
+	es-em: isEm(2em); // true
+}
+```
+
+## Funciones para listas
+
+Funciones que nos permiten trabajar con listas (valores separados por comas).
+
+- **extract(list, index)**
+  - `list`: Lista de valores
+  - `index`: Posición del elemento a extraer (base 1)
+- **length(list):** Lista de la que se contarán los elementos
+
+```less
+@lista: a, b, c, d;
+
+.elemento {
+	content: extract(@lista, 2); // "b" (el segundo elemento)
+	length: length(@lista); // 4 elementos
+}
+```
+
+## Funciones de mapas
+
+Funciones para trabajar con mapas (estos son conjuntos de pares clave-valor).
+
+- **map-keys(map):** Extrae las claves del mapa
+- **map-values(map):** Extrae los valores del mapa
+- **map-get(map, key)**
+  - `map`: Mapa del que se extraerá un valor
+  - `key`: Clave del valor a extraer
+- **map-merge(map1, map2)**
+  - `map1`: Primer mapa a fusionar
+  - `map2`: Segundo mapa a fusionar
+
+```less
+@mapa: {
+	clave1: valor1;
+	clave2: valor2;
+};
+
+.elemento {
+	propiedades: map-keys(@mapa); // clave1, clave2
+	valores: map-values(@mapa); // valor1, valor2
+
+	contenido: map-get(@mapa, clave1); // valor1
+
+	@mapa-nuevo: map-merge(@mapa, {clave3: valor3});
+}
+```
+
+## Funciones condicionales
+
+Funciones para realizar comprobaciones condicionales.
+
+- **if(condition, value1, value2)**
+  - `condition`: Condición a evaluar
+  - `value1`: Valor a devolver si la condición es verdadera
+  - `value2`: Valor a devolver si la condición es falsa
+- **default()**
+  - No recibe parámetros, devuelve el valor predeterminado de la propiedad
+
+```less
+@valor: 10;
+
+.elemento {
+	width: if((2 > 1), 100px, 200px); // 100px
+	height: default(); // valor por defecto
+}
+```
+
+# Conclusiones
+
+Los preprocesadores CSS mejoran el desarrollo de estilos web, potenciando el CSS estándar con características programáticas que incrementan su eficiencia y mantenibilidad del código. Estas herramientas extienden las capacidades básicas de CSS, permitiendo escribir código más estructurado, reutilizable y dinámico.
+
+Estos preprocesadores resultan valiosos en diversos contextos de desarrollo:
+
+- **Proyectos de cualquier escala** - Desde pequeños sitios hasta grandes aplicaciones, los preprocesadores aportan beneficios significativos cuando necesitamos organizar nuestro código en múltiples archivos y aprovechar funcionalidades avanzadas.
+- **Entornos de desarrollo en equipo** - Facilitan la estandarización de prácticas y componentes visuales a través de variables y mixins compartidos.
+- **Sistemas de diseño** - Permiten implementar guías de estilo complejas de manera coherente y sistemática.
+
+## Características destacables
+
+- **Bloques de código reutilizables (mixins)** que aceptan parámetros o funcionan de manera independiente, eliminando la repetición y estandarizando patrones dentro de un proyecto. Esto permite centralizar soluciones comunes como animaciones, layouts flexibles o compatibilidad cross-browser.
+- **Operaciones matemáticas y funciones integradas** que habilitan cálculos dinámicos y manipulaciones avanzadas directamente en el código. Esta capacidad resulta ideal para crear sistemas de rejilla responsivos, efectos visuales complejos y transformaciones de color inteligentes.
+- **Sistema de importación modular** que facilita la organización del código en componentes reutilizables, manteniendo una estructura de archivos lógica que potencia la escalabilidad de los proyectos y mejora los flujos de trabajo colaborativos.
+
+## Consideraciones importantes
+
+A pesar de sus numerosas ventajas, debemos considerar algunos aspectos críticos al implementar preprocesadores:
+
+- **Dependencia tecnológica** - Nos vinculamos a un framework desarrollado por terceros, lo que puede generar problemas si el proyecto es abandonado o si cambiamos de entorno de desarrollo.
+- **Proceso de compilación** - Los preprocesadores requieren un paso adicional para generar el CSS nativo que los navegadores interpretan, lo que añade complejidad al flujo de trabajo y potenciales puntos de fallo.
+
+En el ecosistema de preprocesadores, LESS representa solo una alternativa, compitiendo con otras opciones como Sass/SCSS, Stylus o PostCSS. La elección entre estas tecnologías dependerá principalmente de:
+
+- Las preferencias y experiencia previa del equipo de desarrollo
+- Los requisitos específicos del proyecto
+- Las integraciones con otras herramientas del stack tecnológico
+
+En definitiva, los preprocesadores han revolucionado la forma de escribir CSS, elevándolo de un lenguaje declarativo simple a un entorno de desarrollo potente con capacidades programáticas, permitiendo crear interfaces más sofisticadas con código más limpio y mantenible.

@@ -4,11 +4,8 @@ description: 'Guía completa sobre Flexbox en CSS'
 pubDate: 'Jul 15 2022'
 heroImage: '/blog-placeholder-4.jpg'
 tags:
-  - css
   - flex
   - layout
-  - responsive
-  - web design
 ---
 
 # Flexbox en CSS: Guía Completa

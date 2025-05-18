@@ -8,11 +8,13 @@ import './style.scss'
 import Header from '@/components/Header/index.astro'
 import Authors from '@/components/Authors/index.astro'
 import Tools from '@/components/Tools/index.astro'
+import { ClientRouter } from 'astro:transitions'
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title="Coral Page" description="Coral es un blog simple para leer artículos de css" />
+		<ClientRouter />
 	</head>
 	<body class="blog">
 		<article class="blog-info">

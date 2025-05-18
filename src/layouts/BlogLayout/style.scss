@@ -1,5 +1,6 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
+@use '@sass/utils/scrollbar' as *;
 
 .blog {
 	display: grid;
@@ -16,8 +17,21 @@
 		@include d.flex($gap: v.$big-padding);
 	}
 
+	&-info {
+		position: relative;
+		overflow-x: clip;
+		overflow-y: scroll;
+		max-height: 100vh;
+
+		@include scroll-hidden;
+	}
+
 	&-content {
+		position: sticky;
+		top: 0;
 		background-color: rgb(v.$bg2);
+
+		@include d.flex($gap: v.$padding * 2, $ali: center);
 	}
 
 	&-section {

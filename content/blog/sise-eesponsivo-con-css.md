@@ -5,7 +5,7 @@ pubDate: 'Jul 08 2022'
 heroImage: '/blog-placeholder-3.jpg'
 tags:
   - media queries
-  - web design
+  - responsive
 ---
 
 # Sise Responsivo con CSS

@@ -1,0 +1,50 @@
+<style>
+	#loading-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: rgba(255, 255, 255, 0.8);
+		backdrop-filter: blur(2px);
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: opacity 0.3s ease;
+	}
+
+	#loading-overlay.fade-out {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.spinner {
+		width: 40px;
+		height: 40px;
+		border: 4px solid #ccc;
+		border-top-color: #333;
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+
+<div id="loading-overlay">
+	<div class="spinner"></div>
+</div>
+
+<script type="module">
+	window.addEventListener('DOMContentLoaded', () => {
+		const overlay = document.getElementById('loading-overlay')
+		if (overlay) {
+			overlay.classList.add('fade-out')
+			setTimeout(() => overlay.remove(), 300)
+		}
+	})
+</script>

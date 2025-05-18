@@ -4,11 +4,8 @@ description: 'Aprende a dominar CSS Grid con ejemplos, tablas y diagramas'
 pubDate: 'Jul 22 2022'
 heroImage: '/blog-placeholder-2.jpg'
 tags:
-  - css
   - grid
   - layout
-  - responsive
-  - web design
 ---
 
 # CSS Grid

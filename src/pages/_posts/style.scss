@@ -1,28 +1,32 @@
 @use '@sass/config/vars' as v;
 @use '@sass/utils/defs' as d;
 
-.header {
-	justify-content: space-between;
+.posts {
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+	max-width: 800px;
+
+	@include d.flex($dir: row);
+
+	&-title {
+		font-size: 2.5em;
+		font-weight: bold;
+		text-align: center;
+	}
+}
+
+// Filters Style
+.filters {
+	flex-wrap: wrap;
+	justify-content: center;
 	width: 100%;
 
 	@include d.flex($dir: row, $ali: center);
 
-	&-logo,
-	&-feedback {
-		@include d.flex($dir: row, $ali: center);
-	}
-
-	&-logo h2 {
-		font-weight: bold;
-	}
-
-	&-feedback {
-		padding: 10px 5px;
-	}
-
-	&-coral {
-		width: 30px;
-		height: 30px;
-		object-fit: contain;
+	&-action {
+		padding: v.$padding;
+		border-radius: v.$radius;
+		background-color: rgb(v.$bg1);
 	}
 }

@@ -1,9 +1,11 @@
 ---
 import BlogLayout from '@/layouts/BlogLayout/index.astro'
+import LoadingOverlay from '@/components/LoadingOverlay.astro'
 
 import Posts from '@/pages/_posts/index.astro'
 ---
 
+<LoadingOverlay />
 <BlogLayout>
 	<Posts />
 </BlogLayout>

@@ -1,13 +1,46 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import './style.scss'
+import { Image } from '@unpic/astro'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/es'
+
+dayjs.extend(relativeTime)
+dayjs.locale('es')
 
 type Props = {
-	post: CollectionEntry<'blog'>['data']
+	post: CollectionEntry<'blog'>['data'] & {
+		id: string
+	}
 }
 
 const { post } = Astro.props
 
-const { title, description, pubDate, updatedDate, heroImage } = post
+const { id, title, description, pubDate, tags, heroImage } = post
 ---
 
-<div class="post">{title}</div>
+<a href={`/${id}`} class="post border">
+	<div class="post-hero">
+		<Image
+			src={heroImage}
+			layout="constrained"
+			placeholder="blurhash"
+			objectFit="cover"
+			background={''}
+			width={110}
+			height={150}
+			alt={title}
+		/>
+	</div>
+	<div class="post-description">
+		<div class="post-section">
+			<h4 class="post-title">{title}</h4>
+			<small>{dayjs(pubDate).fromNow()}</small>
+		</div>
+		<p class="post-text">{description}</p>
+		<div class="post-tags">
+			{tags.map((tag) => <p class="post-tag border">{tag}</p>)}
+		</div>
+	</div>
+</a>

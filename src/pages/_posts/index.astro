@@ -1,22 +1,71 @@
 ---
 import { getCollection } from 'astro:content'
 import Post from '@/components/Post/index.astro'
+import './style.scss'
+import { FILTERS } from '@/consts'
 
-const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+const posts = await getCollection('blog')
 ---
 
-<h2>Posts</h2>
-<ul>
+<h2 class="posts-title">Posts</h2>
+
+<section class="filters">
+	<button id="filter-btn" class="filters-action active" data-filter="Todos">Todos</button>
+	{
+		FILTERS.map((filter) => (
+			<button id="filter-btn" class="filters-action" data-filter={filter}>
+				{filter}
+			</button>
+		))
+	}
+</section>
+
+<ul class="posts">
 	{
 		posts.map((post) => (
-			<Post
-				post={{
-					description: post.data.description,
-					title: post.data.title,
-					heroImage: post.data.heroImage,
-					pubDate: post.data.pubDate
-				}}
-			/>
+			<li class="post-item" data-tags={post.data.tags.join(',')}>
+				<Post
+					post={{
+						id: post.id,
+						description: post.data.description,
+						title: post.data.title,
+						heroImage: post.data.heroImage,
+						pubDate: post.data.pubDate,
+						tags: post.data.tags
+					}}
+				/>
+			</li>
 		))
 	}
 </ul>
+
+<script type="module">
+	const buttons = document.querySelectorAll('#filter-btn')
+	const posts = document.querySelectorAll('.post-item')
+
+	function activateFilter(filter) {
+		posts.forEach((post) => {
+			const tags = post.dataset.tags.split(',')
+			post.style.display = tags.includes(filter) || filter === 'Todos' ? 'block' : 'none'
+		})
+
+		buttons.forEach((btn) => {
+			btn.classList.toggle('active', btn.dataset.filter === filter)
+		})
+
+		history.replaceState(null, '', `?filter=${filter}`)
+	}
+
+	buttons.forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const filter = btn.dataset.filter
+			activateFilter(filter)
+		})
+	})
+
+	const urlParams = new URLSearchParams(location.search)
+	const curFilter = urlParams.get('filter')
+	if (curFilter) {
+		activateFilter(curFilter)
+	}
+</script>

@@ -21,6 +21,7 @@
 		"@unpic/placeholder": "^0.1.2",
 		"astro": "5.7.13",
 		"blurhash": "^2.0.5",
+		"dayjs": "^1.11.13",
 		"sass": "1.89.0"
 	},
 	"devDependencies": {

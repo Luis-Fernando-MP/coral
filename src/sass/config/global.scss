@@ -138,11 +138,8 @@ body {
 	}
 
 	.active {
+		color: rgb($fnA) !important;
 		background-color: rgb($tn1) !important;
-
-		* {
-			color: rgb($fnA) !important;
-		}
 
 		svg {
 			stroke: rgb($fnA) !important;

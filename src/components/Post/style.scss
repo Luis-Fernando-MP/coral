@@ -1,0 +1,67 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.post {
+	justify-content: center;
+
+	width: 360px;
+	height: 170px;
+	padding: v.$padding;
+	border-radius: v.$radius;
+
+	background-color: rgb(v.$bg1);
+
+	@include d.flex($dir: row);
+
+	&:hover {
+		border-color: rgb(v.$tn1);
+		text-decoration: none;
+	}
+
+	&-hero {
+		overflow: hidden;
+
+		width: 110px;
+		min-width: 110px;
+		height: 150px;
+		border-radius: v.$radius;
+	}
+
+	&-description {
+		@include d.flex;
+
+		justify-content: space-between;
+	}
+
+	&-section {
+		@include d.flex($gap: 5px);
+	}
+
+	&-title {
+		font-weight: 600;
+	}
+
+	&-text {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+
+		width: 100%;
+
+		text-overflow: ellipsis;
+		white-space: normal;
+	}
+
+	&-tags {
+		@include d.flex($dir: row);
+
+		flex-wrap: wrap;
+	}
+
+	&-tag {
+		padding: 5px 3px;
+		border-radius: 5px;
+		background-color: rgb(v.$bg2);
+	}
+}

@@ -2,12 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 import './style.scss'
 import { Image } from '@unpic/astro'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/es'
-
-dayjs.extend(relativeTime)
-dayjs.locale('es')
+import { parseDate } from '@/lib/date'
 
 type Props = {
 	post: CollectionEntry<'blog'>['data'] & {
@@ -20,7 +15,7 @@ const { post } = Astro.props
 const { id, title, description, pubDate, tags, heroImage } = post
 ---
 
-<a href={`/${id}`} class="post border">
+<a href={`/blog/${id}`} class="post border">
 	<div class="post-hero">
 		<Image
 			src={heroImage}
@@ -36,7 +31,7 @@ const { id, title, description, pubDate, tags, heroImage } = post
 	<div class="post-description">
 		<div class="post-section">
 			<h4 class="post-title">{title}</h4>
-			<small>{dayjs(pubDate).fromNow()}</small>
+			<small>{parseDate(pubDate)}</small>
 		</div>
 		<p class="post-text">{description}</p>
 		<div class="post-tags">

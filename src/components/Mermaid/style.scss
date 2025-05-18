@@ -1,0 +1,25 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.mermaid {
+	@include d.flex;
+
+	width: 100%;
+	padding: v.$padding;
+	border-radius: v.$radius;
+	background-color: rgb(v.$bg1);
+
+	&-download {
+		@include d.flex($dir: row, $ali: center);
+
+		width: fit-content;
+		padding: v.$padding * 0.5 v.$padding;
+		border-radius: v.$radius;
+		background-color: rgb(v.$bg2);
+	}
+
+	&-graph {
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+}

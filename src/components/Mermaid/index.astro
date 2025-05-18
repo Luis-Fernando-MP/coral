@@ -1,0 +1,62 @@
+---
+const { code } = Astro.props
+import { ArrowDownToLineIcon } from '@lucide/astro'
+import './style.scss'
+
+const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`
+---
+
+<div class="mermaid" data-id={id}>
+	<pre id={`graph-${id}`} class="mermaid-graph">{code}</pre>
+	<button class="mermaid-download border" id={`download-${id}`} title="Descargar SVG">
+		<ArrowDownToLineIcon />
+		<p>Descargar</p>
+	</button>
+</div>
+
+<script type="module" is:inline defer>
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
+
+	mermaid.initialize({
+		startOnLoad: false,
+		flowchart: {
+			useMaxWidth: true,
+			htmlLabels: true,
+			curve: 'basis'
+		},
+		themeVariables: {
+			fontFamily: 'monospace',
+			fontSize: '16px',
+			primaryColor: 'rgb(228, 177, 160)',
+			edgeLabelBackground: '#ffffff'
+		}
+	})
+
+	window.addEventListener('DOMContentLoaded', () => {
+		const containers = document.querySelectorAll('.mermaid')
+
+		containers.forEach((container) => {
+			const id = container.dataset.id
+			const graphEl = document.getElementById(`graph-${id}`)
+			const btn = document.getElementById(`download-${id}`)
+
+			mermaid.run({ nodes: [graphEl] })
+
+			btn?.addEventListener('click', () => {
+				const svg = graphEl.querySelector('svg')
+				if (!svg) return alert('Gráfico aún no cargado.')
+
+				const serializer = new XMLSerializer()
+				const source = serializer.serializeToString(svg)
+				const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' })
+
+				const url = URL.createObjectURL(blob)
+				const link = document.createElement('a')
+				link.href = url
+				link.download = `grafico-${id}.svg`
+				link.click()
+				URL.revokeObjectURL(url)
+			})
+		})
+	})
+</script>

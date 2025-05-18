@@ -12,26 +12,25 @@
 
 	&-content,
 	&-info {
+		position: relative;
+
+		overflow-x: clip;
+		overflow-y: scroll;
+
+		max-height: 100vh;
 		padding: 20px 40px;
 
-		@include d.flex($gap: v.$big-padding);
+		@include scroll-hidden;
 	}
 
 	&-info {
-		position: relative;
-		overflow-x: clip;
-		overflow-y: scroll;
-		max-height: 100vh;
-
-		@include scroll-hidden;
+		@include d.flex($gap: v.$big-padding);
 	}
 
 	&-content {
 		position: sticky;
 		top: 0;
 		background-color: rgb(v.$bg2);
-
-		@include d.flex($gap: v.$padding * 2, $ali: center);
 	}
 
 	&-section {

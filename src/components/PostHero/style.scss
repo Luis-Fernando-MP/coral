@@ -1,0 +1,46 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.hero {
+	width: 100%;
+	max-width: 800px;
+	margin-bottom: v.$big-padding;
+
+	@include d.flex($gap: v.$padding * 2);
+
+	&-image {
+		overflow: hidden;
+
+		width: 100%;
+		height: fit-content;
+		margin-bottom: v.$big-padding;
+		border-radius: v.$radius;
+
+		box-shadow: 0 20px 20px 5px rgb(0 0 0 / 22%);
+	}
+
+	&-back {
+		@include d.flex($dir: row);
+	}
+
+	&-info {
+		@include d.flex($gap: 5px);
+	}
+
+	&-title {
+		font-size: 2.5em;
+		font-weight: bold;
+	}
+
+	&-tags {
+		@include d.flex($dir: row);
+
+		flex-wrap: wrap;
+	}
+
+	&-tag {
+		padding: 5px 3px;
+		border-radius: 5px;
+		background-color: rgb(v.$bg1);
+	}
+}

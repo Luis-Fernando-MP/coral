@@ -1,0 +1,15 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.post {
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+	padding-bottom: v.$big-padding * 2;
+
+	&-content {
+		padding: v.$padding * 2 0;
+		border-top: 1px solid rgb(v.$fn2);
+		border-bottom: 1px solid rgb(v.$fn2);
+	}
+}

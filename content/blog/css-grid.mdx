@@ -1,0 +1,681 @@
+---
+title: 'CSS Grid'
+description: 'Aprende a dominar CSS Grid con ejemplos, tablas y diagramas'
+pubDate: 'Jul 22 2022'
+heroImage: '/blog-placeholder-2.jpg'
+hash: 'L54:=kp}Q8ZSHXZHpwk:pekke.aK'
+tags:
+  - grid
+  - layout
+---
+
+## ¿Qué es CSS Grid?
+
+# Guía Avanzada de CSS Grid
+
+import Mermaid from '@/components/Mermaid/index.astro'
+
+# Guía Completa de CSS Grid
+
+> CSS Grid es un sistema de diseño bidimensional que revoluciona la forma en que creamos layouts para la web.
+
+<Mermaid
+	code={`
+flowchart TD
+subgraph "CSS Grid Fundamentals"
+A[Grid Container] --> B[Grid Items]
+A --> C[Grid Lines]
+A --> D[Grid Tracks]
+A --> E[Grid Areas]
+A --> F[Grid Cells]
+A --> G[Grid Gaps]
+end
+`}
+/>
+
+## Conceptos Básicos
+
+| Término        | Descripción                                                |
+| -------------- | ---------------------------------------------------------- |
+| Grid Container | Elemento que tiene `display: grid`                         |
+| Grid Item      | Hijo directo de un grid container                          |
+| Grid Line      | Líneas horizontales y verticales que dividen la cuadrícula |
+| Grid Track     | Espacio entre dos líneas adyacentes (filas o columnas)     |
+| Grid Cell      | Unidad más pequeña en la cuadrícula                        |
+| Grid Area      | Rectángulo formado por 4 grid lines                        |
+| Grid Gap       | Espacio entre tracks                                       |
+
+## 1. Crear un Grid Container
+
+Para empezar a usar CSS Grid, necesitas establecer un elemento como grid container:
+
+```css
+.grid-container {
+	display: grid;
+}
+```
+
+### Ejemplo Básico de Grid Container
+
+<iframe
+	style="width: 100%; height: 200px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lightblue;
+    padding: 20px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 2. Definir Columnas y Filas
+
+Puedes definir el tamaño de columnas y filas utilizando `grid-template-columns` y `grid-template-rows`:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: 200px 200px 200px; /* 3 columnas de 200px */
+	grid-template-rows: 100px 100px; /* 2 filas de 100px */
+}
+```
+
+### Ejemplo con Diferentes Unidades
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 80px 120px;
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lightgreen;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 3. La Unidad `fr`
+
+La unidad `fr` representa una fracción del espacio disponible:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr; /* Proporción 1:2:1 */
+}
+```
+
+### Ejemplo de Unidad fr
+
+<iframe
+	style="width: 100%; height: 200px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1fr</div>
+  <div>2fr</div>
+  <div>1fr</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 10px;
+    height: 100%;
+  }
+  .grid-container div {
+    background: lightsalmon;
+    padding: 20px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 4. Función `repeat()`
+
+La función `repeat()` te permite repetir valores de manera concisa:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Equivale a: 1fr 1fr 1fr */
+	grid-template-rows: repeat(2, 100px); /* Equivale a: 100px 100px */
+}
+```
+
+### Ejemplo con repeat()
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 100px);
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lightcoral;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 5. Grid Gap
+
+Puedes crear espacios entre filas y columnas con `gap`, `row-gap` y `column-gap`:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px; /* Espacio de 20px entre filas y columnas */
+	/* Alternativa: row-gap: 20px; column-gap: 10px; */
+}
+```
+
+### Ejemplo de Grid Gap
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 25px;
+    column-gap: 10px;
+  }
+  .grid-container div {
+    background: lightseagreen;
+    padding: 15px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 6. Posicionamiento de Elementos
+
+Puedes posicionar los elementos utilizando las propiedades `grid-column` y `grid-row`:
+
+```css
+.item1 {
+	grid-column: 1 / 3; /* Desde línea 1 hasta línea 3 */
+	grid-row: 1 / 2; /* Desde línea 1 hasta línea 2 */
+}
+```
+
+### Ejemplo de Posicionamiento
+
+<iframe
+	style="width: 100%; height: 300px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div class="item1">1</div>
+  <div class="item2">2</div>
+  <div class="item3">3</div>
+  <div class="item4">4</div>
+  <div class="item5">5</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 80px);
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lightskyblue;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  .item1 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    background: coral !important;
+  }
+  .item2 {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    background: lightgreen !important;
+  }
+  .item5 {
+    grid-column: 1 / 4;
+    background: gold !important;
+  }
+</style>
+'
+></iframe>
+
+## 7. Atajos para Posicionamiento
+
+Puedes usar `span` para especificar cuántas celdas abarca un elemento:
+
+```css
+.item {
+	grid-column: 1 / span 2; /* Comienza en línea 1 y abarca 2 celdas */
+	grid-row: 2 / span 3; /* Comienza en línea 2 y abarca 3 celdas */
+}
+```
+
+### Ejemplo con span
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div class="span-item">2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 70px);
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lavender;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  .span-item {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 2;
+    background: mediumorchid !important;
+  }
+</style>
+'
+></iframe>
+
+## 8. Grid Areas
+
+Puedes nombrar áreas del grid para un posicionamiento más intuitivo:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-areas:
+		'header header header'
+		'sidebar content content'
+		'footer footer footer';
+}
+
+.header {
+	grid-area: header;
+}
+.sidebar {
+	grid-area: sidebar;
+}
+.content {
+	grid-area: content;
+}
+.footer {
+	grid-area: footer;
+}
+```
+
+### Ejemplo de Grid Areas
+
+<iframe
+	style="width: 100%; height: 350px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div class="header">Header</div>
+  <div class="sidebar">Sidebar</div>
+  <div class="content">Content</div>
+  <div class="footer">Footer</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 80px auto 60px;
+    grid-template-areas: 
+      "header header"
+      "sidebar content"
+      "footer footer";
+    gap: 10px;
+    height: 100%;
+  }
+  .grid-container div {
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  .header {
+    grid-area: header;
+    background: lightcoral;
+  }
+  .sidebar {
+    grid-area: sidebar;
+    background: lightblue;
+  }
+  .content {
+    grid-area: content;
+    background: lightgreen;
+  }
+  .footer {
+    grid-area: footer;
+    background: lightsalmon;
+  }
+</style>
+'
+></iframe>
+
+## 9. Alineación en Grid
+
+CSS Grid ofrece varias propiedades para alinear elementos:
+
+### Para el contenedor:
+
+- `justify-items`: Alinea horizontalmente los elementos dentro de sus celdas
+- `align-items`: Alinea verticalmente los elementos dentro de sus celdas
+- `place-items`: Combina justify-items y align-items
+- `justify-content`: Alinea horizontalmente toda la cuadrícula
+- `align-content`: Alinea verticalmente toda la cuadrícula
+
+### Para los elementos:
+
+- `justify-self`: Alinea horizontalmente un elemento específico
+- `align-self`: Alinea verticalmente un elemento específico
+
+### Ejemplo de Alineación
+
+<iframe
+	style="width: 100%; height: 300px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>start</div>
+  <div>center</div>
+  <div>end</div>
+  <div>stretch</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 120px);
+    gap: 10px;
+  }
+  .grid-container div {
+    background: lightsteelblue;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    width: 80px;
+    height: 50px;
+  }
+  .grid-container div:nth-child(1) {
+    justify-self: start;
+    align-self: start;
+  }
+  .grid-container div:nth-child(2) {
+    justify-self: center;
+    align-self: center;
+  }
+  .grid-container div:nth-child(3) {
+    justify-self: end;
+    align-self: end;
+  }
+  .grid-container div:nth-child(4) {
+    justify-self: stretch;
+    align-self: stretch;
+    width: auto;
+    height: auto;
+  }
+</style>
+'
+></iframe>
+
+## 10. Grid Implícito
+
+Cuando agregas más elementos de los definidos explícitamente, se crean filas o columnas implícitas:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Solo se definen columnas */
+	grid-auto-rows: 100px; /* Altura para filas implícitas */
+}
+```
+
+### Ejemplo de Grid Implícito
+
+<iframe
+	style="width: 100%; height: 350px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 80px;
+    gap: 10px;
+  }
+  .grid-container div {
+    background: paleturquoise;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 11. Grid Auto Flow
+
+Controla cómo se colocan los elementos automáticamente:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-flow: row; /* Valores: row, column, dense */
+}
+```
+
+### Ejemplo de grid-auto-flow
+
+<iframe
+	style="width: 100%; height: 300px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div class="item1">1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 70px;
+    gap: 10px;
+    grid-auto-flow: dense;
+  }
+  .grid-container div {
+    background: palegoldenrod;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  .item1 {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+    background: gold !important;
+  }
+</style>
+'
+></iframe>
+
+## 12. Funciones minmax(), min-content y max-content
+
+`minmax()` establece un tamaño mínimo y máximo para tracks:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: minmax(100px, 1fr) 2fr;
+}
+```
+
+### Ejemplo con minmax()
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>minmax(100px, 1fr)</div>
+  <div>2fr</div>
+  <div>minmax(100px, 1fr)</div>
+  <div>2fr</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 2fr;
+    grid-auto-rows: 100px;
+    gap: 10px;
+  }
+  .grid-container div {
+    background: plum;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## 13. Grid Responsivo con auto-fill y auto-fit
+
+Estas funciones crean diseños responsivos sin media queries:
+
+```css
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+```
+
+### Ejemplo con auto-fill
+
+<iframe
+	style="width: 100%; height: 250px; border: 1px solid #ccc;"
+	srcdoc='
+<div class="grid-container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+</div>
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 80px;
+    gap: 10px;
+  }
+  .grid-container div {
+    background: peachpuff;
+    padding: 10px;
+    text-align: center;
+    font-family: sans-serif;
+  }
+</style>
+'
+></iframe>
+
+## Conclusión
+
+> CSS Grid es una herramienta poderosa que te permite crear layouts complejos con facilidad, proporcionando control bidimensional completo sobre la disposición de los elementos en la página.
+
+CSS Grid funciona muy bien en combinación con Flexbox: usa Grid para el layout general de la página y Flexbox para alinear elementos dentro de componentes específicos.
+
+### Compatibilidad
+
+CSS Grid es compatible con todos los navegadores modernos:
+
+| Navegador | Versión Mínima |
+| --------- | -------------- |
+| Chrome    | 57+            |
+| Firefox   | 52+            |
+| Safari    | 10.1+          |
+| Edge      | 16+            |
+| Opera     | 44+            |

@@ -1,0 +1,189 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.post-content {
+	@include d.flex;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: v.$font2;
+		font-weight: bold;
+		color: rgb(v.$fn1);
+	}
+
+	h1 {
+		font-family: v.$font1;
+		font-size: v.$fXl;
+	}
+
+	h2 {
+		font-size: v.$fH1;
+	}
+
+	h3 {
+		font-size: v.$fH2;
+	}
+
+	h4 {
+		font-size: v.$fH3;
+	}
+
+	h5 {
+		font-size: v.$fH4;
+	}
+
+	h6 {
+		font-size: v.$fH5;
+	}
+
+	p {
+		margin: 0.5rem 0;
+		font-size: v.$fP;
+		color: rgb(v.$fn2);
+	}
+
+	a {
+		color: rgb(v.$tn1);
+	}
+
+	ul,
+	ol {
+		margin: 0.5rem 0;
+		padding-left: 2rem;
+	}
+
+	li {
+		margin: 0.5rem 0;
+	}
+
+	blockquote {
+		margin: 1.5rem 0;
+		padding: 1rem;
+		border-left: 4px solid rgb(v.$tn1);
+		border-radius: v.$radius;
+
+		font-style: italic;
+		color: rgb(v.$fn2);
+
+		background-color: rgba(v.$bg2, 0.5);
+	}
+
+	pre {
+		overflow-x: auto;
+
+		margin: 1.5rem 0;
+		padding: 1rem;
+		border-radius: v.$radius;
+
+		font-family: monospace;
+		tab-size: 2;
+	}
+
+	code {
+		padding: 0.2rem 0.4rem;
+		border-radius: 4px;
+	}
+
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		margin: 2rem 0;
+		font-size: v.$fP;
+	}
+
+	th,
+	td {
+		padding: 0.75rem;
+		border: 1px solid rgba(v.$fn2, 0.3);
+		text-align: left;
+	}
+
+	th {
+		font-weight: bold;
+		background-color: rgba(v.$bg3, 0.4);
+	}
+
+	img {
+		max-width: 100%;
+		margin: 1.5rem 0;
+		border-radius: v.$radius;
+	}
+
+	hr {
+		margin: 2rem 0;
+		border: none;
+		border-top: 1px solid rgba(v.$fn2, 0.2);
+	}
+
+	// Citas en línea (inline code)
+	p code,
+	li code {
+		font-family: monospace;
+		font-size: 0.85em;
+		color: rgb(v.$fn1);
+		background-color: rgba(v.$bg3, 0.4);
+	}
+
+	// Citas resaltadas como “NOTE:”, “TIP:”, etc.
+	.note,
+	.tip,
+	.warning,
+	.info {
+		margin: 1.5rem 0;
+		padding: 1rem;
+		border-left: 4px solid;
+		border-radius: v.$radius;
+
+		font-size: v.$fP;
+
+		background-color: rgba(v.$bg3, 0.3);
+	}
+
+	.note {
+		border-color: v.$info;
+	}
+
+	// Definiciones
+	dl {
+		margin: 1.5rem 0;
+	}
+
+	dt {
+		font-weight: bold;
+		color: rgb(v.$fn1);
+	}
+
+	dd {
+		margin-left: 1rem;
+		color: rgb(v.$fn2);
+	}
+
+	// Abreviaturas y detalles
+	abbr {
+		cursor: help;
+		text-decoration: dotted underline;
+	}
+
+	details {
+		margin: 1rem 0;
+		padding: 1rem;
+		border-radius: v.$radius;
+		background: rgba(v.$bg3, 0.2);
+	}
+
+	summary {
+		cursor: pointer;
+		font-weight: bold;
+		color: rgb(v.$fn1);
+	}
+
+	// Checklists
+	input[type='checkbox'] {
+		margin-right: 0.5rem;
+		accent-color: rgb(v.$tn1);
+	}
+}

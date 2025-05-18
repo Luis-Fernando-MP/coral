@@ -27,11 +27,7 @@ const posts = await getCollection('blog')
 				<Post
 					post={{
 						id: post.id,
-						description: post.data.description,
-						title: post.data.title,
-						heroImage: post.data.heroImage,
-						pubDate: post.data.pubDate,
-						tags: post.data.tags
+						...post.data
 					}}
 				/>
 			</li>

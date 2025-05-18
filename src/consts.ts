@@ -1,6 +1,8 @@
 export const SITE_TITLE = 'Coral Blog'
 export const SITE_DESCRIPTION = 'Bienvenido a Coral Blog'
 
+export const FILTERS = ['media queries', 'web design', 'css', 'grid', 'flex', 'layout', 'responsive', 'web design']
+
 export const AUTHORS = [
 	{
 		image: '/authors/haui.webp',

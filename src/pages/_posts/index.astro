@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content'
+import Post from '@/components/Post/index.astro'
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+---
+
+<h2>Posts</h2>
+<ul>
+	{
+		posts.map((post) => (
+			<Post
+				post={{
+					description: post.data.description,
+					title: post.data.title,
+					heroImage: post.data.heroImage,
+					pubDate: post.data.pubDate
+				}}
+			/>
+		))
+	}
+</ul>

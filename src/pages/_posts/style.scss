@@ -1,0 +1,28 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/defs' as d;
+
+.header {
+	justify-content: space-between;
+	width: 100%;
+
+	@include d.flex($dir: row, $ali: center);
+
+	&-logo,
+	&-feedback {
+		@include d.flex($dir: row, $ali: center);
+	}
+
+	&-logo h2 {
+		font-weight: bold;
+	}
+
+	&-feedback {
+		padding: 10px 5px;
+	}
+
+	&-coral {
+		width: 30px;
+		height: 30px;
+		object-fit: contain;
+	}
+}

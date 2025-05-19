@@ -1,0 +1,302 @@
+---
+title: 'Preprocesador SASS'
+description: 'Exploraremos cómo Sass nos permite escribir CSS de forma más limpia, modular y eficiente, mejorando el flujo de trabajo en nuestros proyectos web.'
+pubDate: 'Jul 17 2025'
+heroImage: '/blog-placeholder-4.jpg'
+hash: 'L6EBsI3M07ij04[J^yo]~7S_WDRm'
+tags:
+  - sass
+  - preprocesador
+  - css
+---
+
+# Sass
+
+**Syntactically Awesome Stylesheets**. Es uno de los preprocesadores más populares y maduros. Este preprocesador cuenta con dos sintaxis:
+
+- **Sass** (indenta con espacios, sin llaves ni punto y coma)
+- **SCSS** (similar a CSS pero con mejoras) ← Más común hoy en día
+
+<div class="featured">
+	<p>En nuestro caso usaremos SCSS por su popularidad y similitud con CSS.</p>
+</div>
+
+# ¿Por qué usar Sass?
+
+1. **Organización del código** con anidamiento y partición en módulos
+2. **Reutilización** con variables, mixins y funciones
+3. **Mayor legibilidad y mantenimiento**
+4. **Lógica programática** dentro de los estilos
+
+<div class="featured">
+	<p>
+		Sass es ampliamente soportado y compatible con herramientas modernas como Webpack, Vite o frameworks como Angular, React y
+		Vue.
+	</p>
+</div>
+
+## Elementos principales
+
+Estos son algunos de los elementos más destacables de SASS
+
+- **Variables**
+- **Anidamiento**
+- **Mixin**
+- **Funciones**
+- **Importaciones**
+- **Condicionales y bucles**
+
+## 1. Variables
+
+Las variables usan el signo `$`, lo que permite guardar valores reutilizables, también permiten almacenar variables CSS, lo que extiende su versatilidad:
+
+```scss
+$color-primario: #e74c3c;
+$margen-base: 16px;
+$fuente: 'Poppins', sans-serif;
+$fuente: var(--foo);
+
+.boton {
+	background-color: $color-primario;
+	padding: $margen-base;
+	font-family: $fuente;
+}
+```
+
+## 2. Anidamiento
+
+Sass permite anidar selectores igual que Less y las versiones más modernas de CSS:
+
+```scss
+.navegacion {
+	background: #333;
+	ul {
+		list-style: none;
+		li {
+			display: inline-block;
+			a {
+				color: white;
+				&:hover {
+					color: #f39c12;
+				}
+			}
+		}
+	}
+}
+```
+
+<div class="featured">
+	<p>El símbolo `&` representa al selector padre, por ejemplo `a:hover`.</p>
+</div>
+
+## 3. Mixins
+
+Son bloques de código reutilizables. Estos pueden aceptar parámetros como no hacerlo:
+
+- @content es una de la propiedad más llamativas de SASS, pues no permite incrustar código dentro de los mixins
+- Parámetros nombrados, mejor la legibilidad del código en SASS
+
+```scss
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@content;
+}
+
+@mixin border($radio: 5px, $size: 1.5px) {
+	border-radius: $radio;
+	border: $size;
+}
+
+.card {
+	@include flex-center {
+		flex-wrap: wrap;
+	}
+	@include border(10px, $size: 2px);
+	padding: 20px;
+}
+```
+
+## 4. Funciones
+
+Sass nos permite definir funciones personalizadas, están obligadas a retornar un resultado a diferencia de los mixins:
+
+```scss
+@function calcular-ancho($columnas) {
+	@return (100% / 12) * $columnas;
+}
+
+.col-6 {
+	width: calcular-ancho(6);
+}
+```
+
+<div class="featured">
+	<p>Al igual que Less, también incluye funciones integradas como `darken()`, `lighten()`, `mix()`, `percentage()`, etc.</p>
+</div>
+
+## 5. Operaciones
+
+Se pueden hacer cálculos matemáticos directamente:
+
+```scss
+$ancho-total: 960px;
+$col: 12;
+$gutter: 20px;
+
+.col-4 {
+	width: ($ancho-total / $col) * 4 - $gutter;
+}
+```
+
+## 6. Importaciones
+
+Permiten dividir el código en varios archivos. Se usa `@use` y `@forward:`
+
+- @import: Antiguamente, fue el referente en cuanto a importaciones, pero actualmente se encuentra deprecado
+- @use permite la importación de código parcial
+
+```scss
+// _variables.scss
+$color-primario: #2980b9;
+
+// _mixins.scss
+@mixin sombra {
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+// styles.scss
+@use 'variables' as v;
+@use 'mixins';
+
+.card {
+	color: v.$color-primario;
+	@include mixins.sombra;
+}
+```
+
+<div class="featured">
+	<p>A diferencia de LESS, Sass usa `@use` para mantener el espacio de nombres y evitar conflictos.</p>
+</div>
+
+## 7. Condicionales
+
+Nos permiten tomar rutas alternativas dentro de nuestros bloques de código de SASS
+
+```scss
+@mixin bg($is-image: false) {
+	@media (prefers-color-scheme: dark) {
+		@if $is-image {
+			background-color: #fff;
+		} @else {
+			background-color: #000;
+		}
+	}
+}
+
+body {
+	@include bg;
+}
+```
+
+### Bucles
+
+```scss
+.grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	gap: 10px;
+
+	@for $i from 1 through 16 {
+		.item-#{$i} {
+			background: #ccc;
+			padding: 20px;
+			text-align: center;
+		}
+	}
+}
+```
+
+<div class="featured">
+	<p>También existen estructuras cíclicas como `@each` y `@while`. Útiles para mapas</p>
+</div>
+
+## 8. Funciones integradas
+
+Sass incluye docenas de funciones para:
+
+### Colores
+
+- `lighten($color, 10%)`
+- `darken($color, 10%)`
+- `mix($color1, $color2, 50%)`
+- `adjust-hue($color, 20deg)`
+- `rgba($color, 0.5)`
+
+### Números
+
+- `percentage(0.5)` → `50%`
+- `round(4.6)` → `5`
+- `ceil(3.1)` → `4`
+- `floor(2.9)` → `2`
+- `min(10px, 5px)`
+- `max(10px, 5px)`
+
+### Cadenas
+
+- `to-upper-case("text")`
+- `to-lower-case("TEXT")`
+- `str-length("hola")` → `4`
+- `quote(…)`, `unquote(…)`
+
+### Listas
+
+```scss
+$lista: a, b, c;
+@debug nth($lista, 2); // b
+@debug length($lista); // 3
+```
+
+### Mapas
+
+```scss
+$mapa: (
+	clave1: valor1,
+	clave2: valor2
+);
+
+.elemento {
+	color: map-get($mapa, clave1);
+}
+```
+
+## 9. Herencia con `@extend`
+
+Permite compartir estilos entre selectores, generalmente se tratan de clases estáticas que son inmutables:
+
+```scss
+%mensaje {
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+.alerta {
+	@extend .mensaje;
+	background-color: #fdd;
+}
+```
+
+## Conclusiones
+
+Sass es una herramienta que nos ayuda a escribir estilos de forma más ordenada, clara y reutilizable. Nos permite:
+
+- **Reutilizar código** con mixins, funciones y herencia.
+- **Organizar mejor** usando archivos separados y estructuras anidadas.
+- **Crear estilos dinámicos** gracias a variables, operaciones y bucles.
+
+Pero, así como pasa con Less, también debemos tener en cuenta que:
+
+- **Necesita un proceso de compilación**, lo que suma pasos al trabajo.
+- **Genera cierta dependencia de herramientas externas** que hay que mantener.

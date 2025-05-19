@@ -3,12 +3,14 @@ const anim = {
 		name: 'bump',
 		duration: '0.5s',
 		easing: 'ease-in',
-		direction: 'reverse'
+		direction: 'reverse',
+		fillMode: 'forwards'
 	},
 	new: {
 		name: 'bump',
 		duration: '0.5s',
-		easing: 'ease-in-out'
+		easing: 'ease-in-out',
+		fillMode: 'forwards'
 	}
 }
 

@@ -14,6 +14,7 @@
 		"@astrojs/node": "^9.2.1",
 		"@astrojs/rss": "4.0.11",
 		"@astrojs/sitemap": "3.4.0",
+		"@astrojs/vercel": "^8.1.4",
 		"@fontsource-variable/work-sans": "^5.2.5",
 		"@fontsource/libre-baskerville": "^5.2.6",
 		"@lucide/astro": "^0.511.0",

@@ -10,6 +10,27 @@
 	height: 100%;
 	min-height: 100vh;
 
+	&-menu {
+		display: none;
+
+		width: fit-content;
+		padding: v.$padding;
+		border-radius: v.$radius;
+
+		background-color: rgb(v.$tn1);
+	}
+
+	&-close {
+		display: none;
+		justify-content: center;
+
+		width: 100%;
+		padding: v.$padding;
+		border-radius: v.$radius;
+
+		background-color: rgb(v.$bg2);
+	}
+
 	&-content,
 	&-info {
 		position: relative;

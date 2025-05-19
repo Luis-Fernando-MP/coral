@@ -1,0 +1,22 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/media' as m;
+
+@include m.smallerScreen {
+	.post {
+		flex-direction: column;
+		width: 100%;
+		max-width: 150px;
+		height: fit-content;
+
+		&-hero {
+			width: 100%;
+			height: 100px;
+		}
+
+		&-tag {
+			padding: 2px;
+			border-radius: 2px;
+			background-color: rgb(v.$bg2);
+		}
+	}
+}

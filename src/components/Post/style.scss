@@ -25,6 +25,12 @@
 		min-width: 110px;
 		height: 150px;
 		border-radius: v.$radius;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	&-description {

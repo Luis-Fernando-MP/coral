@@ -1,0 +1,71 @@
+@use '@sass/config/vars' as v;
+@use '@sass/utils/media' as m;
+@use '@sass/utils/defs' as d;
+
+@include m.bigScreen {
+	.blog {
+		grid-template-columns: 350px 1fr;
+
+		&-title {
+			font-size: 3em;
+		}
+	}
+}
+
+@include m.largeScreen {
+	.blog {
+		position: relative;
+		grid-template-columns: 1fr;
+
+		&-close,
+		&-menu {
+			margin: auto;
+
+			@include d.flex($dir: row, $gap: 5px);
+		}
+
+		&-menu {
+			color: rgb(v.$fnA);
+
+			svg {
+				stroke: rgb(v.$fnA);
+			}
+		}
+
+		&-content {
+			width: 100%;
+		}
+
+		&-info {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: -100%;
+
+			width: 100%;
+			max-width: 350px;
+			height: 100vh;
+
+			background-color: rgb(v.$bg1);
+
+			transition: left 0.5s ease-in-out;
+		}
+
+		&-title {
+			font-size: 2.5em;
+		}
+
+		&.blog-mobile .blog-info {
+			left: 0;
+		}
+	}
+}
+
+@include m.smallerScreen {
+	.blog {
+		&-content,
+		&-info {
+			padding: v.$padding;
+		}
+	}
+}

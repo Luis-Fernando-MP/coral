@@ -36,11 +36,11 @@ import { MenuIcon, XIcon } from '@lucide/astro'
 			<button class="blog-menu" id="menuButton"><MenuIcon /> Info</button>
 			<slot />
 		</article>
-		<script>
-			const menuButton = document.getElementById('menuButton')
-			const closeButton = document.getElementById('menuClose')
+		<script is:inline data-astro-rerun>
+			function init() {
+				const menuButton = document.getElementById('menuButton')
+				const closeButton = document.getElementById('menuClose')
 
-			document.addEventListener('DOMContentLoaded', () => {
 				menuButton?.addEventListener('click', () => {
 					document.body.classList.toggle('blog-mobile')
 				})
@@ -48,7 +48,11 @@ import { MenuIcon, XIcon } from '@lucide/astro'
 				closeButton?.addEventListener('click', () => {
 					document.body.classList.remove('blog-mobile')
 				})
-			})
+			}
+
+			init()
+			window.addEventListener('load', init)
+			window.addEventListener('astro:after-swap', init)
 		</script>
 	</body>
 </html>

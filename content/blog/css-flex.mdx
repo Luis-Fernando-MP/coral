@@ -1,0 +1,384 @@
+---
+title: 'CSS Flex'
+description: 'CSS Flexbox una herramienta para alinear y distribuir elementos con facilidad.'
+pubDate: 'May 17 2025'
+heroImage: '/posts/5.webp'
+hash: 'L54:=kp}Q8ZSHXZHpwk:pekke.aK'
+tags:
+  - grid
+  - layout
+---
+
+# Flexbox CSS
+
+Flexbox es un modelo de diseño en CSS que permite distribuir y alinear elementos dentro de un contenedor, facilitando la creación de layouts flexibles y adaptativos en una sola dimensión (fila o columna).
+
+<div class="featured">
+	<p>
+		Flexbox se enfoca en el diseño en una dimensión, a diferencia de CSS Grid que trabaja en dos dimensiones (filas y columnas).
+	</p>
+</div>
+
+## ¿Por qué usar Flexbox?
+
+En layouts tradicionales, alinear elementos y distribuir espacio puede ser complejo y requerir trucos. Flexbox simplifica:
+
+- **Alineación fácil:** Centrar elementos vertical u horizontalmente.
+- **Distribución del espacio:** Espacios iguales o proporcionales entre elementos.
+- **Orden flexible:** Cambiar visualmente el orden sin modificar el HTML.
+- **Adaptabilidad:** Los elementos pueden crecer, encoger o ajustarse según el espacio disponible.
+
+## ¿Hay alguna desventaja?
+
+Sí, algunas cosas a considerar:
+
+- **Solo una dimensión:** Flexbox organiza elementos en fila o columna, no en cuadrículas complejas.
+- **Compatibilidad:** Aunque casi universal, algunas propiedades pueden comportarse distinto en navegadores antiguos.
+- **Aprendizaje:** Comprender bien todos sus conceptos puede tomar algo de práctica.
+
+## Elementos principales de Flexbox
+
+### 1. Contenedor Flex
+
+Para activar Flexbox, aplicamos `display: flex` o `inline-flex` al contenedor.
+
+```css
+.contenedor {
+	display: flex;
+}
+```
+
+<div class="featured">
+	<p>Esto convierte a los hijos directos en ítems flexibles.</p>
+</div>
+### 2. Ejes y dirección (`flex-direction`)
+
+Define la dirección principal donde se colocan los ítems:
+
+```css
+.contenedor {
+	flex-direction: row; /* fila horizontal (default) */
+	/* o row-reverse, column, column-reverse */
+}
+```
+
+### 2. Alineación en el eje cruzado – `align-items: flex-end`
+
+<iframe
+	srcdoc='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .container {
+      display: flex;
+      align-items: flex-end;
+      border: 2px dashed #888;
+      padding: 10px;
+      height: 150px;
+    }
+    .box {
+      width: 60px;
+      background-color: #2196f3;
+      margin: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>align-items: flex-end</h2>
+  <div class="container">
+    <div class="box" style="height: 40px;">A</div>
+    <div class="box" style="height: 80px;">B</div>
+    <div class="box" style="height: 60px;">C</div>
+  </div>
+</body>
+</html>
+'
+></iframe>
+### 3. Alineación en el eje principal (`justify-content`)
+
+<iframe
+	srcdoc='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<style>
+.container {
+display: flex;
+justify-content: center;
+border: 2px dashed #888;
+padding: 10px;
+height: 150px;
+}
+.box {
+width: 60px;
+height: 60px;
+background-color: #4caf50;
+margin: 5px;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+border-radius: 6px;
+}
+</style>
+</head>
+<body>
+<h2>justify-content: center</h2>
+<div class="container">
+<div class="box">1</div>
+<div class="box">2</div>
+<div class="box">3</div>
+</div>
+</body>
+</html>
+'
+></iframe>
+
+Controla la distribución de los ítems en el eje principal:
+
+```css
+.contenedor {
+	justify-content: flex-start; /* inicio */
+	justify-content: center; /* centro */
+	justify-content: space-between; /* espacio entre */
+	justify-content: space-around; /* espacio alrededor */
+	justify-content: space-evenly; /* espacio uniforme */
+}
+```
+
+### Ejemplo
+
+<iframe
+	srcdoc='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      border: 2px dashed #888;
+      padding: 10px;
+      height: 150px;
+    }
+    .box {
+      width: 60px;
+      height: 60px;
+      background-color: #4caf50;
+      margin: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>justify-content: center</h2>
+  <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+  </div>
+</body>
+</html>
+'
+></iframe>
+
+### 4. Alineación en el eje cruzado (`align-items`)
+
+Controla la alineación perpendicular al eje principal:
+
+```css
+.contenedor {
+	align-items: stretch; /* estira para llenar el contenedor (default) */
+	align-items: flex-start; /* al inicio */
+	align-items: center; /* centro */
+	align-items: flex-end; /* al final */
+	align-items: baseline; /* alineado por línea base del texto */
+}
+```
+
+### Ejemplo
+
+<iframe
+	srcdoc='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .container {
+      display: flex;
+      align-items: flex-end;
+      border: 2px dashed #888;
+      padding: 10px;
+      height: 150px;
+    }
+    .box {
+      width: 60px;
+      background-color: #2196f3;
+      margin: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>align-items: flex-end</h2>
+  <div class="container">
+    <div class="box" style="height: 40px;">A</div>
+    <div class="box" style="height: 80px;">B</div>
+    <div class="box" style="height: 60px;">C</div>
+  </div>
+</body>
+</html>
+'
+></iframe>
+### 5. Saltos de línea (`flex-wrap`)
+
+Determina si los ítems pueden romper la línea si no caben:
+
+```css
+.contenedor {
+	flex-wrap: nowrap; /* no permite salto (default) */
+	flex-wrap: wrap; /* permite salto */
+	flex-wrap: wrap-reverse; /* salto invertido */
+}
+```
+
+### Ejemplo
+
+<iframe
+	srcdoc='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      border: 2px dashed #888;
+      padding: 10px;
+    }
+    .box {
+      width: 60px;
+      height: 60px;
+      background-color: #f44336;
+      margin: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>flex-wrap: wrap</h2>
+  <div class="container">
+    <div class="box">X1</div>
+    <div class="box">X2</div>
+    <div class="box">X3</div>
+    <div class="box">X4</div>
+    <div class="box">X5</div>
+    <div class="box">X6</div>
+    <div class="box">X7</div>
+  </div>
+</body>
+</html>
+'
+></iframe>
+### 6. Espacios entre ítems (`gap`)
+
+Agrega espacio entre los ítems sin usar márgenes:
+
+```css
+.contenedor {
+	gap: 10px;
+}
+```
+
+### 7. Propiedades de los ítems flex
+
+Cada hijo puede tener propiedades que controlan su tamaño y posición:
+
+| Propiedad     | Función                                                                               |
+| ------------- | ------------------------------------------------------------------------------------- |
+| `flex-grow`   | Cuánto puede crecer un ítem (proporcionalmente)                                       |
+| `flex-shrink` | Cuánto puede encoger un ítem                                                          |
+| `flex-basis`  | Tamaño base antes de aplicar crecimiento o encogimiento                               |
+| `flex`        | Atajo para combinar las 3 propiedades anteriores (`flex-grow flex-shrink flex-basis`) |
+| `order`       | Cambia el orden visual de los ítems                                                   |
+| `align-self`  | Sobrescribe la alineación del contenedor para un ítem específico                      |
+
+Ejemplo:
+
+```css
+.item {
+	flex: 1; /* crecerá igual que otros ítems con flex:1 */
+	order: 2; /* aparecerá después de ítems con order menor */
+	align-self: center; /* se alinea verticalmente en el centro */
+}
+```
+
+---
+
+## Ejemplo práctico completo
+
+```css
+.contenedor {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.item {
+	flex: 1 1 200px; /* crecer, encoger, base de 200px */
+	order: 1;
+}
+```
+
+---
+
+## ¿Cuándo usar Flexbox?
+
+| Situación                                        | ¿Usar Flexbox?     |
+| ------------------------------------------------ | ------------------ |
+| Alinear ítems en fila o columna                  | ✅                 |
+| Distribuir espacio entre ítems                   | ✅                 |
+| Layout en una sola dimensión (fila o columna)    | ✅                 |
+| Layout bidimensional complejo (filas y columnas) | ❌ Mejor usar Grid |
+
+---
+
+## Conclusión
+
+Flexbox es ideal para:
+
+- Diseños flexibles y adaptativos en una dimensión.
+- Centrar y alinear elementos sin complicaciones.
+- Distribuir espacio dinámicamente entre ítems.
+- Reordenar elementos visualmente sin modificar HTML.

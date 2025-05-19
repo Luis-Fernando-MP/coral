@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 import './style.scss'
-import { Image } from '@unpic/astro'
 import { parseDate } from '@/lib/date'
+import { Image } from 'astro:assets'
 
 type Props = {
 	post: CollectionEntry<'blog'>['data'] & {
@@ -17,16 +17,7 @@ const { id, title, description, pubDate, tags, heroImage } = post
 
 <a href={`/blog/${id}`} class="post border">
 	<div class="post-hero">
-		<Image
-			src={heroImage}
-			layout="constrained"
-			placeholder="blurhash"
-			objectFit="cover"
-			background={''}
-			width={110}
-			height={150}
-			alt={title}
-		/>
+		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" />
 	</div>
 	<div class="post-description">
 		<div class="post-section">

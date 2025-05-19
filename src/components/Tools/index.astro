@@ -2,8 +2,7 @@
 import { TOOLS } from '@/consts'
 import './style.scss'
 import { blurhashToCssGradientString } from '@unpic/placeholder'
-
-import { Image } from '@unpic/astro'
+import { Image } from 'astro:assets'
 ---
 
 <h2>Herramientas:</h2>
@@ -17,7 +16,7 @@ import { Image } from '@unpic/astro'
 				<div class="tool border">
 					{tool.style === 'preview' && (
 						<div class="tool-preview" style={{ background: previewHash ?? '' }}>
-							<Image src={tool.projectPreview} alt={tool.projectName} layout="fullWidth" placeholder="dominantColor" />
+							<img src={tool.projectPreview} alt={tool.projectName} />
 						</div>
 					)}
 					<figure class="tool-header">
@@ -28,21 +27,12 @@ import { Image } from '@unpic/astro'
 								alt={tool.profileAuthor}
 								width={50}
 								height={50}
-								placeholder="dominantColor"
-								objectFit="cover"
+								fit="cover"
 								priority={false}
 								loading="eager"
 							/>
 							<div class="tool-image__floatIcon">
-								<Image
-									class=""
-									src={tool.toolIcon}
-									alt={tool.toolName}
-									layout="fullWidth"
-									placeholder="dominantColor"
-									priority={false}
-									loading="eager"
-								/>
+								<img class="" src={tool.toolIcon} alt={tool.toolName} loading="eager" />
 							</div>
 						</div>
 

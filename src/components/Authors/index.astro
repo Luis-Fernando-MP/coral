@@ -2,8 +2,7 @@
 import { AUTHORS } from '@/consts'
 import './style.scss'
 import { blurhashToCssGradientString } from '@unpic/placeholder'
-
-import { Image } from '@unpic/astro'
+import { Image } from 'astro:assets'
 ---
 
 <h2>Autores:</h2>
@@ -15,16 +14,7 @@ import { Image } from '@unpic/astro'
 			return (
 				<figure class="author border">
 					<div class="author-image" style={{ background: css }}>
-						<Image
-							src={author.image}
-							layout="constrained"
-							placeholder="blurhash"
-							objectFit="cover"
-							background={css}
-							width={35}
-							height={35}
-							alt={author.fullname}
-						/>
+						<Image src={author.image} layout="constrained" width={35} height={35} alt={author.fullname} fit="cover" />
 					</div>
 					<figcaption class="author-bio">
 						<h4 class="author-fullname">{author.fullname}</h4>

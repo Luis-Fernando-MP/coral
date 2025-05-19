@@ -24,7 +24,7 @@ Con el paso del tiempo, Grid ha sido bien acogido por la comunidad frontend, sie
 
 Dentro de Grid contamos con algunas componentes importantes:
 
-[IMG]
+<img src="/posts/grid-css/1.png" alt="Ejemplo visual de CSS Grid" style={{ maxWidth: '400px', borderRadius: '8px' }} />
 
 - **Contenedor**: El elemento que envuelve a todos los elementos dentro de la cuadrícula o rejilla.
 - **Celda (grid cell)**: Es cada una de las celdas dentro de la cuadrícula.
@@ -52,6 +52,8 @@ Podríamos especificar de forma directa cuantas columnas y cuantas filas deberí
 | **`grid-template-columns`** | Establece el tamaño de cada columna: Ej. `100px, 200px, 300px;` |
 | **`grid-template-rows`**    | Establece el tamaño de cada fila: Ej. `500px, 100px;`           |
 
+<img src="/posts/grid-css/2.png" alt="Ejemplo visual de CSS Grid" style={{ maxWidth: '400px', borderRadius: '8px' }} />
+
 <div class="featured">
 	<p>
 		Cabe aclarar que: a medida que vayamos incluyendo más ítems en el grid, tendríamos que aumentar también el número de filas o
@@ -73,6 +75,8 @@ A diferencia de especificar directamente el tamaño de las filas o columnas, tam
 	grid-template-rows: 2fr 1fr;
 }
 ```
+
+<img src="/posts/grid-css/3.png" alt="Ejemplo visual de CSS Grid" style={{ maxWidth: '400px', borderRadius: '8px' }} />
 
 # Funciones especiales
 
@@ -107,7 +111,6 @@ Estos cambios se ven claramente reflejados al redimensionar una página web, o a
 Comúnmente confundidas entre su, relucen su efectividad tras el cambio del tamaño del viewport. Estos valores son utilizados dentro de la función `repeat()` :
 
 <iframe
-	style="width:100%;height:fit-content;border:none"
 	srcdoc='
   <html>
   <head>
@@ -261,7 +264,6 @@ Todas vuelven a su valor por defecto, como si no hubiéramos definido nada.
 - Código
 
 <iframe
-	style="width:100%;height:520px;border:none"
 	srcdoc='
   <html>
   <head>
@@ -314,6 +316,8 @@ Todas vuelven a su valor por defecto, como si no hubiéramos definido nada.
 
 Nos permite estructurar un layout complejo atrevés de nombres y posiciones específicas, esto facilita la organización, ya que podemos definir zonas visibles de forma clara
 
+<img src="/posts/grid-css/4.png" alt="Ejemplo visual de CSS Grid" style={{ maxWidth: '400px', borderRadius: '8px' }} />
+
 | **Propiedad**             | **Descripción**                                                                        |
 | ------------------------- | -------------------------------------------------------------------------------------- |
 | **`grid-template-areas`** | Se define en el contenedor padre, especificando la disposición y nombres de las áreas. |
@@ -361,7 +365,6 @@ Cada fila se define como un String, dentro se especifica con el nombre de un ár
 - código
 
 <iframe
-	style="width:100%;height:400px;border:none"
 	srcdoc='
 <html>
 <head>
@@ -480,7 +483,7 @@ Para mejorar la demostración de las celdas irregulares, nos basaremos en una re
 }
 ```
 
-[IMG]
+<img src="/posts/grid-css/5.png" alt="Ejemplo visual de CSS Grid" style={{ maxWidth: '400px', borderRadius: '8px' }} />
 
 Tengamos en cuenta que en CSS las filas y columnas se contabilizan desde 1, por lo que, para una rejilla de 6x6 tendríamos:
 
@@ -497,8 +500,6 @@ Tengamos en cuenta que en CSS las filas y columnas se contabilizan desde 1, por 
 	grid-row-end: 3;
 }
 ```
-
-[IMG]
 
 | Propiedad              | Significado                                 |
 | ---------------------- | ------------------------------------------- |

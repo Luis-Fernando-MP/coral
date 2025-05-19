@@ -2,48 +2,46 @@
 @use '@sass/utils/defs' as d;
 
 .post-content {
-	@include d.flex;
+	@include d.flex($gap: v.$padding * 2);
 
 	h1,
 	h2,
 	h3,
 	h4,
 	h5,
-	h6 {
+	h6,
+	strong,
+	li,
+	ul,
+	div,
+	p,
+	span,
+	b,
+	a,
+	th,
+	tr {
 		font-family: v.$font2;
+	}
+
+	h1,
+	h2,
+	h3 {
 		font-weight: bold;
 		color: rgb(v.$fn1);
 	}
 
-	h1 {
-		font-family: v.$font1;
-		font-size: v.$fXl;
-	}
-
-	h2 {
-		font-size: v.$fH1;
-	}
-
-	h3 {
-		font-size: v.$fH2;
-	}
-
-	h4 {
-		font-size: v.$fH3;
-	}
-
-	h5 {
-		font-size: v.$fH4;
-	}
-
-	h6 {
-		font-size: v.$fH5;
+	h4,
+	h5,
+	h6,
+	p,
+	span,
+	b,
+	a {
+		color: rgb(v.$fn2);
 	}
 
 	p {
-		margin: 0.5rem 0;
-		font-size: v.$fP;
-		color: rgb(v.$fn2);
+		font-size: v.$fH4;
 	}
 
 	a {
@@ -52,24 +50,36 @@
 
 	ul,
 	ol {
-		margin: 0.5rem 0;
 		padding-left: 2rem;
 	}
 
 	li {
-		margin: 0.5rem 0;
+		margin-bottom: 5px;
+		list-style: disc;
 	}
 
-	blockquote {
-		margin: 0;
-		padding: 1rem;
-		border-left: 4px solid rgb(v.$tn1);
-		border-radius: v.$radius;
+	table {
+		border-collapse: collapse;
+		width: 100%;
+		font-size: v.$fP;
+	}
 
-		font-style: italic;
-		color: rgb(v.$fn2);
+	th,
+	td {
+		padding: 0.75rem;
+		border: 1px solid rgba(v.$fn2, 0.3);
+		text-align: left;
+	}
 
-		background-color: rgba(v.$bg2, 0.5);
+	th {
+		font-weight: bold;
+		background-color: rgba(v.$bg3, 0.4);
+	}
+
+	hr {
+		margin: 2rem 0;
+		border: none;
+		border-top: 1px solid rgba(v.$fn2, 0.2);
 	}
 
 	pre {
@@ -86,99 +96,24 @@
 	code {
 		padding: 2px 5px;
 		border-radius: 2px;
-		background-color: rgb(v.$bg1);
-	}
 
-	table {
-		border-collapse: collapse;
-		width: 100%;
-		margin: 2rem 0;
-		font-size: v.$fP;
-	}
-
-	th,
-	td {
-		padding: 0.75rem;
-		border: 1px solid rgba(v.$fn2, 0.3);
-		text-align: left;
-	}
-
-	th {
-		font-weight: bold;
-		background-color: rgba(v.$bg3, 0.4);
-	}
-
-	img {
-		max-width: 100%;
-		margin: 1.5rem 0;
-		border-radius: v.$radius;
-	}
-
-	hr {
-		margin: 2rem 0;
-		border: none;
-		border-top: 1px solid rgba(v.$fn2, 0.2);
-	}
-
-	// Citas en línea (inline code)
-	p code,
-	li code {
 		font-family: monospace;
 		font-size: 0.85em;
 		color: rgb(v.$fn1);
-		background-color: rgba(v.$bg3, 0.4);
+
+		background-color: rgb(v.$tn2);
 	}
 
-	// Citas resaltadas como “NOTE:”, “TIP:”, etc.
-	.note,
-	.tip,
-	.warning,
-	.info {
+	blockquote {
+		margin: 0;
 		padding: 1rem;
-		border-left: 4px solid;
+		border-left: 4px solid rgb(v.$tn1);
 		border-radius: v.$radius;
 
-		font-size: v.$fP;
-
-		background-color: rgba(v.$bg3, 0.3);
-	}
-
-	.note {
-		border-color: v.$info;
-	}
-
-	// Definiciones
-	dl {
-		margin: 1.5rem 0;
-	}
-
-	dt {
-		font-weight: bold;
-		color: rgb(v.$fn1);
-	}
-
-	dd {
-		margin-left: 1rem;
+		font-style: italic;
 		color: rgb(v.$fn2);
-	}
 
-	// Abreviaturas y detalles
-	abbr {
-		cursor: help;
-		text-decoration: dotted underline;
-	}
-
-	details {
-		margin: 1rem 0;
-		padding: 1rem;
-		border-radius: v.$radius;
-		background: rgba(v.$bg3, 0.2);
-	}
-
-	summary {
-		cursor: pointer;
-		font-weight: bold;
-		color: rgb(v.$fn1);
+		background-color: rgba(v.$bg2, 0.5);
 	}
 
 	// Checklists
@@ -189,5 +124,24 @@
 
 	pre > code {
 		all: unset;
+	}
+
+	.featured {
+		padding: v.$padding;
+		border: 1px solid rgb(v.$bg3);
+		border-radius: v.$radius;
+		background-color: rgb(v.$tn2);
+
+		* {
+			color: rgb(v.$fn1);
+		}
+	}
+
+	iframe {
+		width: 100%;
+		height: max-content;
+		min-height: 350px;
+		border: 1px solid rgb(v.$bg3);
+		border-radius: v.$radius;
 	}
 }

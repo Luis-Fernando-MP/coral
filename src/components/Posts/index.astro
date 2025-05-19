@@ -7,33 +7,35 @@ import { FILTERS } from '@/consts'
 const posts = await getCollection('blog')
 ---
 
-<h2 class="posts-title">Posts</h2>
+<article class="posts-container">
+	<h2 class="posts-title">Posts</h2>
 
-<section class="filters">
-	<button id="filter-btn" class="filters-action active" data-filter="Todos">Todos</button>
-	{
-		FILTERS.map((filter) => (
-			<button id="filter-btn" class="filters-action" data-filter={filter}>
-				{filter}
-			</button>
-		))
-	}
-</section>
+	<section class="filters">
+		<button id="filter-btn" class="filters-action active" data-filter="Todos">Todos</button>
+		{
+			FILTERS.map((filter) => (
+				<button id="filter-btn" class="filters-action" data-filter={filter}>
+					{filter}
+				</button>
+			))
+		}
+	</section>
 
-<ul class="posts">
-	{
-		posts.map((post) => (
-			<li class="post-item" data-tags={post.data.tags.join(',')}>
-				<Post
-					post={{
-						id: post.id,
-						...post.data
-					}}
-				/>
-			</li>
-		))
-	}
-</ul>
+	<ul class="posts">
+		{
+			posts.map((post) => (
+				<li class="post-item" data-tags={post.data.tags.join(',')}>
+					<Post
+						post={{
+							id: post.id,
+							...post.data
+						}}
+					/>
+				</li>
+			))
+		}
+	</ul>
+</article>
 
 <script type="module">
 	const buttons = document.querySelectorAll('#filter-btn')

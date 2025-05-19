@@ -4,7 +4,6 @@ import { blurhashToCssGradientString } from '@unpic/placeholder'
 
 import { ArrowLeftIcon } from '@lucide/astro'
 import { parseDate } from '@/lib/date'
-import { tAnimation } from '@/lib/animation'
 
 interface Props {
 	title: string
@@ -20,7 +19,7 @@ const css = blurhashToCssGradientString(hash)
 ---
 
 <article class="hero">
-	<div class="hero-image" style={{ background: css }} transition:name="hero" transition:animate={tAnimation}>
+	<div class="hero-image" style={{ background: css }}>
 		<img src={heroImage} alt={title} />
 	</div>
 

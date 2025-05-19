@@ -9,6 +9,10 @@
 
 	@include d.flex($dir: row);
 
+	&-container {
+		@include d.flex($gap: v.$padding * 2);
+	}
+
 	&-title {
 		font-size: 2.5em;
 		font-weight: bold;

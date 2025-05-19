@@ -1,38 +1,33 @@
 ---
 const { code } = Astro.props
-import { ArrowDownToLineIcon } from '@lucide/astro'
-import './style.scss'
-
 const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`
 ---
 
 <div class="mermaid" data-id={id}>
 	<pre id={`graph-${id}`} class="mermaid-graph">{code}</pre>
 	<button class="mermaid-download border" id={`download-${id}`} title="Descargar SVG">
-		<ArrowDownToLineIcon />
 		<p>Descargar</p>
 	</button>
 </div>
 
-<script type="module" is:inline defer>
+<script is:inline type="module" data-astro-rerun>
 	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
+	function init() {
+		mermaid.initialize({
+			startOnLoad: false,
+			flowchart: {
+				useMaxWidth: true,
+				htmlLabels: true,
+				curve: 'basis'
+			},
+			themeVariables: {
+				fontFamily: 'monospace',
+				fontSize: '16px',
+				primaryColor: 'rgb(228, 177, 160)',
+				edgeLabelBackground: '#ffffff'
+			}
+		})
 
-	mermaid.initialize({
-		startOnLoad: false,
-		flowchart: {
-			useMaxWidth: true,
-			htmlLabels: true,
-			curve: 'basis'
-		},
-		themeVariables: {
-			fontFamily: 'monospace',
-			fontSize: '16px',
-			primaryColor: 'rgb(228, 177, 160)',
-			edgeLabelBackground: '#ffffff'
-		}
-	})
-
-	window.addEventListener('DOMContentLoaded', () => {
 		const containers = document.querySelectorAll('.mermaid')
 
 		containers.forEach((container) => {
@@ -58,5 +53,9 @@ const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`
 				URL.revokeObjectURL(url)
 			})
 		})
-	})
+	}
+
+	init()
+	window.addEventListener('load', init)
+	window.addEventListener('astro:after-swap', init)
 </script>

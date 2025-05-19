@@ -38,8 +38,8 @@ import { MenuIcon, XIcon } from '@lucide/astro'
 		</article>
 		<script type="module" is:inline data-astro-rerun>
 			function init() {
-				const menuButton = document.getElementById('menuButton')
-				const closeButton = document.getElementById('menuClose')
+				const menuButton = document.querySelector('#menuButton')
+				const closeButton = document.querySelector('#menuClose')
 
 				menuButton?.addEventListener('click', () => {
 					document.body.classList.toggle('blog-mobile')
@@ -51,7 +51,6 @@ import { MenuIcon, XIcon } from '@lucide/astro'
 			}
 
 			init()
-			document.addEventListener('DOMContentLoaded', init)
 			document.addEventListener('astro:after-swap', init)
 		</script>
 	</body>

@@ -13,20 +13,19 @@ export const AUTHORS = [
 		socialURL: 'https://github.com/Luis-Fernando-MP'
 	},
 	{
-		image: '/authors/haui.webp',
+		image: '/authors/jhose.webp',
 		hash: 'LCC4X]]j2ZF2|?,?NwI;1bOWw_sS',
-
-		fullname: 'Melgar Pizarro Luis',
-		userCode: 'U22234855',
-		nickname: '@haui',
+		fullname: 'Jhosef Nacor Condori Chauca',
+		userCode: 'U21226582',
+		nickname: '@Jhosef',
 		socialURL: ''
 	},
 	{
-		image: '/authors/haui.webp',
+		image: '/authors/joel.webp',
 		hash: 'LCC4X]]j2ZF2|?,?NwI;1bOWw_sS',
-		fullname: 'Melgar Pizarro Luis',
-		userCode: 'U22234855',
-		nickname: '@haui',
+		fullname: 'Joel Alonso Alva Reynoso',
+		userCode: '',
+		nickname: '@Joel',
 		socialURL: ''
 	}
 ]

@@ -15,9 +15,9 @@ const { post } = Astro.props
 const { id, title, description, pubDate, tags, heroImage } = post
 ---
 
-<a href={`/blog/${id}`} class="post border">
+<a href={`/blog/${id}`} class="post border" transition:name="hero">
 	<div class="post-hero">
-		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" transition:name="hero" />
+		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" />
 	</div>
 	<div class="post-description">
 		<div class="post-section">

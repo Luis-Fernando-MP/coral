@@ -5,12 +5,17 @@ import { BugIcon } from '@lucide/astro'
 ---
 
 <header class="header">
-	<div class="header-logo">
+	<a href="/" class="header-logo">
 		<Coral className="header-coral" />
 		<h2>Coral</h2>
-	</div>
+	</a>
 
-	<a class="header-feedback" href="/feedback">
+	<a
+		class="header-feedback"
+		href="https://github.com/Luis-Fernando-MP/coral/discussions"
+		target="_blank"
+		rel="noreferrer noopener"
+	>
 		<BugIcon />
 		<p>Feedback</p>
 	</a>

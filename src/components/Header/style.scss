@@ -19,8 +19,14 @@
 		@include d.flex($dir: row, $ali: center);
 	}
 
-	&-logo h2 {
-		font-weight: bold;
+	&-logo {
+		&:hover {
+			text-decoration: none;
+		}
+
+		h2 {
+			font-weight: bold;
+		}
 	}
 
 	&-feedback {

@@ -15,7 +15,7 @@ export const AUTHORS = [
 	{
 		image: '/authors/jhose.webp',
 		hash: 'LCC4X]]j2ZF2|?,?NwI;1bOWw_sS',
-		fullname: 'Jhosef Nacor Condori Chauca',
+		fullname: 'Jhosef Condori Chauca',
 		userCode: 'U21226582',
 		nickname: '@Jhosef',
 		socialURL: ''
@@ -23,7 +23,7 @@ export const AUTHORS = [
 	{
 		image: '/authors/joel.webp',
 		hash: 'LCC4X]]j2ZF2|?,?NwI;1bOWw_sS',
-		fullname: 'Joel Alonso Alva Reynoso',
+		fullname: 'Joel Alva Reynoso',
 		userCode: '',
 		nickname: '@Joel',
 		socialURL: ''

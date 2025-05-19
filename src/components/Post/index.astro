@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import './style.scss'
 import { parseDate } from '@/lib/date'
 import { Image } from 'astro:assets'
+import { tAnimation } from '@/lib/animation'
 
 type Props = {
 	post: CollectionEntry<'blog'>['data'] & {
@@ -15,7 +16,7 @@ const { post } = Astro.props
 const { id, title, description, pubDate, tags, heroImage } = post
 ---
 
-<a href={`/blog/${id}`} class="post border" transition:name="hero">
+<a href={`/blog/${id}`} class="post border" transition:name="hero" transition:animate={tAnimation}>
 	<div class="post-hero">
 		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" />
 	</div>

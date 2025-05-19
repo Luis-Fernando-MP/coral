@@ -17,7 +17,7 @@ const { id, title, description, pubDate, tags, heroImage } = post
 
 <a href={`/blog/${id}`} class="post border">
 	<div class="post-hero">
-		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" />
+		<Image src={heroImage} layout="constrained" width={110} height={150} alt={title} fit="cover" transition:name="hero" />
 	</div>
 	<div class="post-description">
 		<div class="post-section">

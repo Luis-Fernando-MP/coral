@@ -19,15 +19,17 @@
   <img src="public/coral-2.png" alt="Imagen 3" style="border-radius: 10px; width: 100%; height: auto; margin-bottom: 10px;"> 
 </div>
 
-<img alt="Astro" src="https://img.shields.io/badge/Astro-FF5D01?style=flat&amp;logo=astro&amp;logoColor=white">
-<img alt="Vercel" src="https://img.shields.io/badge/Vercel-000000?style=flat&amp;logo=vercel&amp;logoColor=white">
-<img alt="Figma" src="https://img.shields.io/badge/Figma-F24E1E?style=flat&amp;logo=figma&amp;logoColor=white">
-<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&amp;logo=typescript&amp;logoColor=white">
-<img alt="Mermaid" src="https://img.shields.io/badge/Mermaid-008080?style=flat&amp;logo=mermaid&amp;logoColor=white">
-<img alt="Giscus" src="https://img.shields.io/badge/Giscus-000000?style=flat&amp;logo=github&amp;logoColor=white">
-<img alt="Day.js" src="https://img.shields.io/badge/Day.js-FF5D01?style=flat&amp;logo=javascript&amp;logoColor=white">
-<img alt="Lucide Icons" src="https://img.shields.io/badge/Lucide_Icons-000000?style=flat&amp;logo=lucide&amp;logoColor=white">
-<img alt="Sass" src="https://img.shields.io/badge/Sass-CC6699?style=flat&amp;logo=sass&amp;logoColor=white">
+## 🛠️ Tecnologías Utilizadas
+
+[![Astro](https://img.shields.io/badge/Astro-FF5D01?style=flat&logo=astro&logoColor=white)](https://astro.build)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com)
+[![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white)](https://figma.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Mermaid](https://img.shields.io/badge/Mermaid-008080?style=flat&logo=mermaid&logoColor=white)](https://mermaid-js.github.io)
+[![Giscus](https://img.shields.io/badge/Giscus-000000?style=flat&logo=github&logoColor=white)](https://giscus.app)
+[![Day.js](https://img.shields.io/badge/Day.js-FF5D01?style=flat&logo=javascript&logoColor=white)](https://day.js.org)
+[![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-000000?style=flat&logo=lucide&logoColor=white)](https://lucide.dev)
+[![Sass](https://img.shields.io/badge/Sass-CC6699?style=flat&logo=sass&logoColor=white)](https://sass-lang.com)
 
 ## 👥 Equipo de Desarrollo
 

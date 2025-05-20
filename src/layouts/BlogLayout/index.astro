@@ -36,7 +36,7 @@ import { MenuIcon, XIcon } from '@lucide/astro'
 			<button class="blog-menu" id="menuButton"><MenuIcon /> Info</button>
 			<slot />
 		</article>
-		<script type="module" is:inline data-astro-rerun>
+		<script type="module" is:inline data-astro-rerun defer>
 			function init() {
 				const menuButton = document.querySelector('#menuButton')
 				const closeButton = document.querySelector('#menuClose')

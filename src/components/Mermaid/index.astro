@@ -10,7 +10,7 @@ const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`
 	</button>
 </div>
 
-<script is:inline type="module" data-astro-rerun>
+<script is:inline type="module" data-astro-rerun defer>
 	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
 	function init() {
 		mermaid.initialize({
@@ -56,6 +56,5 @@ const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`
 	}
 
 	init()
-	window.addEventListener('load', init)
 	window.addEventListener('astro:after-swap', init)
 </script>

@@ -37,33 +37,38 @@ const posts = await getCollection('blog')
 	</ul>
 </article>
 
-<script type="module">
-	const buttons = document.querySelectorAll('#filter-btn')
-	const posts = document.querySelectorAll('.post-item')
+<script is:inline type="module" data-astro-rerun defer>
+	function init() {
+		const buttons = document.querySelectorAll('#filter-btn')
+		const posts = document.querySelectorAll('.post-item')
 
-	function activateFilter(filter) {
-		posts.forEach((post) => {
-			const tags = post.dataset.tags.split(',')
-			post.style.display = tags.includes(filter) || filter === 'Todos' ? 'block' : 'none'
-		})
+		function activateFilter(filter) {
+			posts.forEach((post) => {
+				const tags = post.dataset.tags.split(',')
+				post.style.display = tags.includes(filter) || filter === 'Todos' ? 'block' : 'none'
+			})
+
+			buttons.forEach((btn) => {
+				btn.classList.toggle('active', btn.dataset.filter === filter)
+			})
+
+			history.replaceState(null, '', `?filter=${filter}`)
+		}
 
 		buttons.forEach((btn) => {
-			btn.classList.toggle('active', btn.dataset.filter === filter)
+			btn.addEventListener('click', () => {
+				const filter = btn.dataset.filter
+				activateFilter(filter)
+			})
 		})
 
-		history.replaceState(null, '', `?filter=${filter}`)
+		const urlParams = new URLSearchParams(location.search)
+		const curFilter = urlParams.get('filter')
+		if (curFilter) {
+			activateFilter(curFilter)
+		}
 	}
 
-	buttons.forEach((btn) => {
-		btn.addEventListener('click', () => {
-			const filter = btn.dataset.filter
-			activateFilter(filter)
-		})
-	})
-
-	const urlParams = new URLSearchParams(location.search)
-	const curFilter = urlParams.get('filter')
-	if (curFilter) {
-		activateFilter(curFilter)
-	}
+	init()
+	window.addEventListener('astro:after-swap', init)
 </script>

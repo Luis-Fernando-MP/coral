@@ -1,7 +1,7 @@
 {
 	"name": "blog-css",
 	"type": "module",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
@@ -11,17 +11,17 @@
 	},
 	"dependencies": {
 		"@astrojs/mdx": "4.2.6",
-		"@astrojs/node": "^9.2.1",
+		"@astrojs/node": "9.2.1",
 		"@astrojs/rss": "4.0.11",
 		"@astrojs/sitemap": "3.4.0",
-		"@fontsource-variable/work-sans": "^5.2.5",
-		"@fontsource/libre-baskerville": "^5.2.6",
-		"@lucide/astro": "^0.511.0",
-		"@unpic/placeholder": "^0.1.2",
+		"@fontsource-variable/work-sans": "5.2.5",
+		"@fontsource/libre-baskerville": "5.2.6",
+		"@lucide/astro": "0.511.0",
+		"@unpic/placeholder": "0.1.2",
 		"astro": "5.7.13",
-		"blurhash": "^2.0.5",
-		"dayjs": "^1.11.13",
-		"mermaid": "^11.6.0",
+		"blurhash": "2.0.5",
+		"dayjs": "1.11.13",
+		"mermaid": "11.6.0",
 		"sass": "1.89.0"
 	},
 	"devDependencies": {
